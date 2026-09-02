@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" font-family="'JetBrains Mono',ui-monospace,monospace">
+  <rect width="1600" height="1000" fill="#080a08"/>
+  <rect x="0" y="0" width="1600" height="52" fill="#12160f"/>
+  <circle cx="30" cy="26" r="7" fill="#ff5f57"/><circle cx="54" cy="26" r="7" fill="#febc2e"/><circle cx="78" cy="26" r="7" fill="#28c840"/>
+  <text x="120" y="32" fill="#5a7a4a" font-size="14">recon-toolkit ~ zsh</text>
+  <g font-size="19">
+    <text x="40" y="110" fill="#7ee787">$ ./recon.sh --target example.com --full</text>
+    <text x="40" y="150" fill="#8b949e">[*] resolviendo objetivo...            <tspan fill="#7ee787">ok</tspan></text>
+    <text x="40" y="185" fill="#8b949e">[*] 4 subdominios en scope</text>
+    <text x="40" y="220" fill="#c9d1d9">  api.example.com        <tspan fill="#58a6ff">10.0.4.12</tspan>   <tspan fill="#7ee787">200</tspan></text>
+    <text x="40" y="252" fill="#c9d1d9">  admin.example.com      <tspan fill="#58a6ff">10.0.4.19</tspan>   <tspan fill="#f0883e">403</tspan></text>
+    <text x="40" y="284" fill="#c9d1d9">  dev.example.com        <tspan fill="#58a6ff">10.0.4.31</tspan>   <tspan fill="#7ee787">200</tspan></text>
+    <text x="40" y="316" fill="#c9d1d9">  vpn.example.com        <tspan fill="#58a6ff">10.0.4.44</tspan>   <tspan fill="#8b949e">tcp/443</tspan></text>
+    <text x="40" y="360" fill="#8b949e">[*] escaneo de puertos (top 1000)...</text>
+    <text x="40" y="392" fill="#c9d1d9">  22/tcp   open   ssh      OpenSSH 9.6</text>
+    <text x="40" y="424" fill="#c9d1d9">  80/tcp   open   http     nginx 1.25.4</text>
+    <text x="40" y="456" fill="#c9d1d9">  443/tcp  open   https    nginx 1.25.4</text>
+    <text x="40" y="488" fill="#c9d1d9">  8080/tcp open   http     <tspan fill="#f0883e">Jenkins 2.4 (login)</tspan></text>
+    <text x="40" y="532" fill="#8b949e">[*] fuzzing de rutas en api.example.com...</text>
+    <text x="40" y="564" fill="#7ee787">  /v1/health           200   38 B</text>
+    <text x="40" y="596" fill="#7ee787">  /v1/users            401   0 B</text>
+    <text x="40" y="628" fill="#f85149">  /.git/config         200   412 B   <tspan fill="#f0883e">[!] posible exposición</tspan></text>
+    <text x="40" y="672" fill="#8b949e">[*] generando reporte -> out/report.html</text>
+    <text x="40" y="712" fill="#7ee787">[+] hecho en 24.8s  ·  1 hallazgo alto, 3 medios</text>
+    <text x="40" y="756" fill="#7ee787">$ <tspan fill="#c9d1d9">_</tspan></text>
+  </g>
+</svg>

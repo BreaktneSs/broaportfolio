@@ -144,12 +144,71 @@ export const skillGroups: SkillGroup[] = [
   },
 ]
 
+/* ── Galería de capturas ────────────────────────────────────── */
+/*
+ * Suelta tus imágenes (png / jpg / webp / avif / svg) en
+ *   src/assets/gallery/
+ * y añade una entrada aquí con el mismo nombre de archivo en `file`.
+ * `tall: true` destaca la captura ocupando dos columnas del mosaico.
+ * `href` (opcional) añade un enlace externo en el visor.
+ */
+
+export interface GalleryShot {
+  file: string
+  title: Record<Locale, string>
+  caption: Record<Locale, string>
+  tall?: boolean
+  href?: string
+}
+
+export const gallery: GalleryShot[] = [
+  {
+    file: 'dashboard.svg',
+    title: { es: 'Panel en tiempo real', en: 'Realtime dashboard' },
+    caption: {
+      es: 'Métricas en vivo, gráficas y tablas — React + WebSocket.',
+      en: 'Live metrics, charts and tables — React + WebSocket.',
+    },
+    tall: true,
+  },
+  {
+    file: 'recon-tool.svg',
+    title: { es: 'Recon Toolkit (CLI)', en: 'Recon Toolkit (CLI)' },
+    caption: {
+      es: 'Automatización de reconocimiento en ejecución sobre un objetivo de laboratorio.',
+      en: 'Recon automation running against a lab target.',
+    },
+  },
+  {
+    file: 'mobile-app.svg',
+    title: { es: 'App móvil de finanzas', en: 'Finance mobile app' },
+    caption: {
+      es: 'Cliente React Native — balance, movimientos y navegación.',
+      en: 'React Native client — balance, transactions and navigation.',
+    },
+  },
+  {
+    file: 'landing.svg',
+    title: { es: 'Landing de producto', en: 'Product landing' },
+    caption: {
+      es: 'Página de marketing con animaciones y modo claro.',
+      en: 'Marketing page with animations and light mode.',
+    },
+  },
+]
+
 /* ── Cadenas de interfaz (i18n) ─────────────────────────────── */
 
 export const ui: Record<
   Locale,
   {
-    nav: { about: string; work: string; skills: string; contact: string }
+    nav: {
+      about: string
+      work: string
+      gallery: string
+      skills: string
+      contact: string
+    }
     hero: {
       kicker: string
       title: string[]
@@ -169,6 +228,14 @@ export const ui: Record<
       all: string
       filters: Record<Project['kind'] | 'all', string>
     }
+    gallery: {
+      heading: string
+      lead: string
+      empty: string
+      close: string
+      prev: string
+      next: string
+    }
     skills: { heading: string; lead: string }
     contact: {
       heading: string
@@ -185,6 +252,7 @@ export const ui: Record<
     nav: {
       about: 'Perfil',
       work: 'Proyectos',
+      gallery: 'Galería',
       skills: 'Skills',
       contact: 'Contacto',
     },
@@ -219,6 +287,14 @@ export const ui: Record<
         security: 'Seguridad',
       },
     },
+    gallery: {
+      heading: 'Galería',
+      lead: 'Capturas de mis aplicaciones en ejecución.',
+      empty: 'Aún no hay capturas. Añádelas en src/content.ts.',
+      close: 'Cerrar',
+      prev: 'Anterior',
+      next: 'Siguiente',
+    },
     skills: {
       heading: 'Stack & Skills',
       lead: 'Las herramientas con las que me muevo cómodo.',
@@ -237,7 +313,13 @@ export const ui: Record<
     lang: { switchTo: 'Switch to English' },
   },
   en: {
-    nav: { about: 'About', work: 'Work', skills: 'Skills', contact: 'Contact' },
+    nav: {
+      about: 'About',
+      work: 'Work',
+      gallery: 'Gallery',
+      skills: 'Skills',
+      contact: 'Contact',
+    },
     hero: {
       kicker: 'Security & Frontend Engineer',
       title: ['I build interfaces', 'that also', 'survive attacks.'],
@@ -268,6 +350,14 @@ export const ui: Record<
         fullstack: 'Full-stack',
         security: 'Security',
       },
+    },
+    gallery: {
+      heading: 'Gallery',
+      lead: 'Screenshots of my applications in action.',
+      empty: 'No screenshots yet. Add them in src/content.ts.',
+      close: 'Close',
+      prev: 'Previous',
+      next: 'Next',
     },
     skills: {
       heading: 'Stack & Skills',

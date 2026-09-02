@@ -8,6 +8,7 @@ import { Navbar } from './components/Navbar'
 import { Hero } from './sections/Hero'
 import { About } from './sections/About'
 import { Work } from './sections/Work'
+import { Gallery } from './sections/Gallery'
 import { Skills } from './sections/Skills'
 import { Contact } from './sections/Contact'
 import { Footer } from './sections/Footer'
@@ -25,6 +26,7 @@ function Shell() {
         <Hero />
         <About />
         <Work />
+        <Gallery />
         <Skills />
         <Contact />
       </main>
