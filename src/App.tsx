@@ -9,7 +9,6 @@ import { Hero } from './sections/Hero'
 import { About } from './sections/About'
 import { Experience } from './sections/Experience'
 import { Work } from './sections/Work'
-import { Gallery } from './sections/Gallery'
 import { Skills } from './sections/Skills'
 import { Contact } from './sections/Contact'
 import { Footer } from './sections/Footer'
@@ -28,7 +27,6 @@ function Shell() {
         <About />
         <Experience />
         <Work />
-        <Gallery />
         <Skills />
         <Contact />
       </main>

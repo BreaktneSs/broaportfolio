@@ -101,43 +101,47 @@ export function ProjectCard({ project, onExplore }: ProjectCardProps) {
           <button
             type="button"
             onClick={onExplore}
-            className="group/link inline-flex items-center gap-1.5 text-sm font-medium text-[rgb(var(--text-strong))]"
+            className="group/link relative inline-flex items-center gap-2 rounded-full border border-[rgb(var(--glow-a)/0.3)] bg-[rgb(var(--glow-a)/0.08)] py-1.5 pr-4 pl-2.5 text-sm font-medium text-[rgb(var(--text-strong))] transition-colors hover:border-[rgb(var(--glow-a))]/60 hover:bg-[rgb(var(--glow-a)/0.16)]"
           >
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="text-[rgb(var(--glow-a))]"
-            >
-              <path d="M3 6a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6Z" />
-            </svg>
+            <span className="relative grid size-5 shrink-0 place-items-center">
+              <span className="absolute inset-0 animate-ping rounded-full bg-[rgb(var(--glow-a))] opacity-40" />
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="relative text-[rgb(var(--glow-a))]"
+              >
+                <path d="M3 6a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6Z" />
+              </svg>
+            </span>
             {t.explorer.cta}
           </button>
         )}
-        {project.links.map((link) => (
-          <a
-            key={link.label}
-            href={link.href}
-            target={link.href.startsWith('http') ? '_blank' : undefined}
-            rel="noreferrer noopener"
-            className="group/link inline-flex items-center gap-1 text-sm font-medium text-[rgb(var(--text-strong))]"
-          >
-            {link.label}
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              className="transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+        {!project.explorer &&
+          project.links.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel="noreferrer noopener"
+              className="group/link inline-flex items-center gap-1 text-sm font-medium text-[rgb(var(--text-strong))]"
             >
-              <path d="M7 17L17 7M8 7h9v9" />
-            </svg>
-          </a>
-        ))}
+              {link.label}
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                className="transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+              >
+                <path d="M7 17L17 7M8 7h9v9" />
+              </svg>
+            </a>
+          ))}
       </footer>
     </motion.article>
   )

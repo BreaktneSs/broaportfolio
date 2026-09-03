@@ -187,6 +187,7 @@ export const projects: Project[] = [
       },
     ],
     accent: 'linear-gradient(135deg,#f59e0b,#84cc16)',
+    explorer: true,
   },
   {
     slug: 'tls-config-auditor',
@@ -198,8 +199,9 @@ export const projects: Project[] = [
       en: 'Python tool wrapping Nmap that automates detection of insecure TLS configurations (legacy protocols and weak ciphers) on target hosts, with a rich console UI and a menu-driven flow. Built to slot into a pipeline.',
     },
     stack: ['Python', 'Nmap', 'ssl-enum-ciphers', 'rich'],
-    links: [{ label: 'Código', href: 'https://github.com/BreaktneSs' }],
+    links: [],
     accent: 'linear-gradient(135deg,#84cc16,#0ea5e9)',
+    explorer: true,
   },
   {
     slug: 'resa-k',
@@ -207,8 +209,8 @@ export const projects: Project[] = [
     year: '2025',
     kind: 'dev',
     summary: {
-      es: 'Plataforma web de reserva de eventos: búsqueda y filtrado, categorías, autenticación con Google y panel de usuario (cotizaciones, reservas, notificaciones). Diseño responsive. Capturas en la galería.',
-      en: 'Event-booking web platform: search and filtering, categories, Google auth and a user dashboard (quotes, bookings, notifications). Responsive design. Screenshots in the gallery.',
+      es: 'Plataforma web de reserva de eventos: búsqueda y filtrado, categorías, autenticación con Google y panel de usuario (cotizaciones, reservas, notificaciones). Diseño responsive.',
+      en: 'Event-booking web platform: search and filtering, categories, Google auth and a user dashboard (quotes, bookings, notifications). Responsive design.',
     },
     stack: ['React', 'Tailwind', 'OAuth', 'REST'],
     links: [],
@@ -348,6 +350,54 @@ export interface GalleryShot {
 
 export const gallery: GalleryShot[] = [
   {
+    file: 'wifi-marauder-hardware.png',
+    title: { es: 'ESP32 + Flipper Zero', en: 'ESP32 + Flipper Zero' },
+    caption: {
+      es: 'Módulo ESP32 con el firmware Marauder, controlado por Wi-Fi desde el Flipper Zero.',
+      en: 'ESP32 module running the Marauder firmware, controlled over Wi-Fi from the Flipper Zero.',
+    },
+    project: 'wifi-marauder',
+  },
+  {
+    file: 'wifi-marauder-captive-portal.png',
+    title: {
+      es: 'Captive portal (vista de la víctima)',
+      en: 'Captive portal (victim view)',
+    },
+    caption: {
+      es: 'Página de login falsa servida por el evil portal en un laboratorio controlado: el objetivo cree estar iniciando sesión en Google.',
+      en: 'Fake login page served by the evil portal in a controlled lab — the target believes they’re signing in to Google.',
+    },
+    project: 'wifi-marauder',
+  },
+  {
+    file: 'wifi-marauder-captured-creds.png',
+    title: { es: 'Credenciales capturadas', en: 'Captured credentials' },
+    caption: {
+      es: 'Log del Flipper Zero con las credenciales enviadas por el cliente conectado al evil portal.',
+      en: 'Flipper Zero log showing the credentials submitted by the client connected to the evil portal.',
+    },
+    project: 'wifi-marauder',
+  },
+  {
+    file: 'tls-auditor-code.png',
+    title: { es: 'Código fuente (Python)', en: 'Source code (Python)' },
+    caption: {
+      es: 'Menú interactivo con rich.Console: valida TLS bajo demanda y despacha la opción elegida al módulo tls_validator.',
+      en: 'Interactive menu built with rich.Console: validates TLS on demand and dispatches the chosen option to the tls_validator module.',
+    },
+    project: 'tls-config-auditor',
+  },
+  {
+    file: 'tls-auditor-scan.png',
+    title: { es: 'Escaneo en ejecución', en: 'Scan in action' },
+    caption: {
+      es: 'Resultado real de un escaneo: cifrados TLS 1.0 detectados vía ssl-enum-ciphers y alerta de configuración insegura.',
+      en: 'Real scan output: TLS 1.0 ciphers detected via ssl-enum-ciphers, flagged as an insecure configuration.',
+    },
+    project: 'tls-config-auditor',
+  },
+  {
     file: 'aukani-login.png',
     title: { es: 'Aukani POS — inicio de sesión', en: 'Aukani POS — sign in' },
     caption: {
@@ -442,7 +492,6 @@ export const ui: Record<
       about: string
       experience: string
       work: string
-      gallery: string
       skills: string
       contact: string
     }
@@ -468,8 +517,6 @@ export const ui: Record<
       filters: Record<ProjectKind | 'all', string>
     }
     gallery: {
-      heading: string
-      lead: string
       empty: string
       close: string
       prev: string
@@ -478,7 +525,12 @@ export const ui: Record<
     explorer: {
       cta: string
       back: string
-      folders: { description: string; stack: string; gallery: string }
+      folders: {
+        description: string
+        stack: string
+        gallery: string
+        references: string
+      }
     }
     skills: { heading: string; lead: string }
     contact: {
@@ -497,7 +549,6 @@ export const ui: Record<
       about: 'Perfil',
       experience: 'Experiencia',
       work: 'Proyectos',
-      gallery: 'Galería',
       skills: 'Skills',
       contact: 'Contacto',
     },
@@ -539,8 +590,6 @@ export const ui: Record<
       },
     },
     gallery: {
-      heading: 'Galería',
-      lead: 'Capturas de mis aplicaciones en ejecución.',
       empty: 'Aún no hay capturas. Añádelas en src/content.ts.',
       close: 'Cerrar',
       prev: 'Anterior',
@@ -553,6 +602,7 @@ export const ui: Record<
         description: 'Descripción',
         stack: 'Stack y tecnologías',
         gallery: 'Galería',
+        references: 'Referencias',
       },
     },
     skills: {
@@ -577,7 +627,6 @@ export const ui: Record<
       about: 'About',
       experience: 'Experience',
       work: 'Work',
-      gallery: 'Gallery',
       skills: 'Skills',
       contact: 'Contact',
     },
@@ -619,8 +668,6 @@ export const ui: Record<
       },
     },
     gallery: {
-      heading: 'Gallery',
-      lead: 'Screenshots of my applications in action.',
       empty: 'No screenshots yet. Add them in src/content.ts.',
       close: 'Close',
       prev: 'Previous',
@@ -633,6 +680,7 @@ export const ui: Record<
         description: 'Description',
         stack: 'Stack & tech',
         gallery: 'Gallery',
+        references: 'References',
       },
     },
     skills: {

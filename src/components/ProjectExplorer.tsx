@@ -5,8 +5,8 @@ import { gallery, type Project } from '../content'
 import { resolveGalleryUrl } from '../lib/galleryAssets'
 import { Lightbox, type Slide } from './Lightbox'
 
-type Folder = 'description' | 'stack' | 'gallery'
-const FOLDERS: Folder[] = ['description', 'stack', 'gallery']
+type Folder = 'description' | 'stack' | 'gallery' | 'references'
+const BASE_FOLDERS: Folder[] = ['description', 'stack', 'gallery']
 
 function FolderIcon({ className }: { className?: string }) {
   return (
@@ -35,6 +35,24 @@ function FileIcon({ className }: { className?: string }) {
     >
       <path d="M7 2.5h7l4.5 4.5V20a1.5 1.5 0 0 1-1.5 1.5h-10A1.5 1.5 0 0 1 5.5 20V4A1.5 1.5 0 0 1 7 2.5Z" />
       <path d="M14 2.5V7h4.5" />
+    </svg>
+  )
+}
+
+function LinkIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M7 17L17 7M8 7h9v9" />
     </svg>
   )
 }
@@ -88,6 +106,14 @@ export function ProjectExplorer({ project, onClose }: ProjectExplorerProps) {
       document.body.style.overflow = prevOverflow
     }
   }, [open, onClose, lightboxIndex, activeFolder])
+
+  const folders = useMemo<Folder[]>(
+    () =>
+      project && project.links.length > 0
+        ? [...BASE_FOLDERS, 'references']
+        : BASE_FOLDERS,
+    [project],
+  )
 
   const shots = useMemo(
     () =>
@@ -175,26 +201,34 @@ export function ProjectExplorer({ project, onClose }: ProjectExplorerProps) {
                     transition={slideTransition}
                     className="flex flex-wrap items-start justify-center gap-4 p-8 sm:gap-8 sm:p-12"
                   >
-                    {FOLDERS.map((f) => (
-                      <button
-                        key={f}
-                        type="button"
-                        onClick={() => openFolder(f)}
-                        className="group flex w-24 flex-col items-center gap-2 rounded-2xl p-3 text-center transition-colors hover:bg-[rgb(var(--glow-a)/0.1)]"
-                      >
-                        <span className="relative">
-                          <FolderIcon className="size-14 text-[rgb(var(--glow-a))] drop-shadow-[0_4px_10px_rgb(var(--glow-a)/0.35)] transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:scale-105" />
-                          {f === 'gallery' && shots.length > 0 && (
-                            <span className="absolute -top-1 -right-1 grid size-4 place-items-center rounded-full bg-[rgb(var(--glow-a))] font-mono text-[9px] font-bold text-black">
-                              {shots.length}
-                            </span>
-                          )}
-                        </span>
-                        <span className="text-xs text-[rgb(var(--text-body))] group-hover:text-[rgb(var(--text-strong))]">
-                          {t.explorer.folders[f]}
-                        </span>
-                      </button>
-                    ))}
+                    {folders.map((f) => {
+                      const count =
+                        f === 'gallery'
+                          ? shots.length
+                          : f === 'references'
+                            ? project.links.length
+                            : 0
+                      return (
+                        <button
+                          key={f}
+                          type="button"
+                          onClick={() => openFolder(f)}
+                          className="group flex w-24 flex-col items-center gap-2 rounded-2xl p-3 text-center transition-colors hover:bg-[rgb(var(--glow-a)/0.1)]"
+                        >
+                          <span className="relative">
+                            <FolderIcon className="size-14 text-[rgb(var(--glow-a))] drop-shadow-[0_4px_10px_rgb(var(--glow-a)/0.35)] transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:scale-105" />
+                            {count > 0 && (
+                              <span className="absolute -top-1 -right-1 grid size-4 place-items-center rounded-full bg-[rgb(var(--glow-a))] font-mono text-[9px] font-bold text-black">
+                                {count}
+                              </span>
+                            )}
+                          </span>
+                          <span className="text-xs text-[rgb(var(--text-body))] group-hover:text-[rgb(var(--text-strong))]">
+                            {t.explorer.folders[f]}
+                          </span>
+                        </button>
+                      )
+                    })}
                   </motion.div>
                 ) : (
                   <motion.div
@@ -280,6 +314,38 @@ export function ProjectExplorer({ project, onClose }: ProjectExplorerProps) {
                           ))}
                         </div>
                       ))}
+
+                    {activeFolder === 'references' && (
+                      <ul className="space-y-2">
+                        {project.links.map((link) => (
+                          <li key={link.href}>
+                            <a
+                              href={link.href}
+                              target="_blank"
+                              rel="noreferrer noopener"
+                              className="group/link flex items-center gap-3 rounded-xl border border-[rgb(var(--hairline)/0.14)] p-3 text-sm text-[rgb(var(--text-body))] hover:border-[rgb(var(--glow-a))]/40 hover:text-[rgb(var(--text-strong))]"
+                            >
+                              <LinkIcon className="shrink-0 text-[rgb(var(--glow-a))]" />
+                              <span className="flex-1 truncate">
+                                {link.label}
+                              </span>
+                              <svg
+                                width="14"
+                                height="14"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                className="shrink-0 opacity-50 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 group-hover/link:opacity-100"
+                              >
+                                <path d="M7 17L17 7M8 7h9v9" />
+                              </svg>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>

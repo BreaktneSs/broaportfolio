@@ -9,7 +9,7 @@ export function Skills() {
   return (
     <Section
       id="skills"
-      index="05"
+      index="04"
       heading={t.skills.heading}
       lead={t.skills.lead}
     >
