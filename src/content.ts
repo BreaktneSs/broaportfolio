@@ -105,6 +105,8 @@ export interface Project {
   links: { label: string; href: string }[]
   /** gradiente CSS para la tarjeta */
   accent: string
+  /** abre el explorador de archivos (descripción / stack / galería) en vez de solo enlaces */
+  explorer?: boolean
 }
 
 export const projects: Project[] = [
@@ -127,6 +129,7 @@ export const projects: Project[] = [
     ],
     links: [],
     accent: 'linear-gradient(135deg,#22d3ee,#84cc16)',
+    explorer: true,
   },
   {
     slug: 'insecure-backend-devsecops',
@@ -208,8 +211,9 @@ export const projects: Project[] = [
       en: 'Event-booking web platform: search and filtering, categories, Google auth and a user dashboard (quotes, bookings, notifications). Responsive design. Screenshots in the gallery.',
     },
     stack: ['React', 'Tailwind', 'OAuth', 'REST'],
-    links: [{ label: 'Galería', href: '#gallery' }],
+    links: [],
     accent: 'linear-gradient(135deg,#22d3ee,#84cc16)',
+    explorer: true,
   },
   {
     slug: 'vm-anti-detection',
@@ -330,6 +334,8 @@ export const focusAreas: FocusArea[] = [
  * y añade una entrada aquí con el mismo nombre de archivo en `file`.
  * El mosaico es un grid 4:3; el visor muestra la imagen completa.
  * `href` (opcional) añade un enlace externo en el visor.
+ * `project` (opcional) — el slug de un Project — hace que la captura
+ * aparezca también en la carpeta "Galería" de su explorador de proyecto.
  */
 
 export interface GalleryShot {
@@ -337,6 +343,7 @@ export interface GalleryShot {
   title: Record<Locale, string>
   caption: Record<Locale, string>
   href?: string
+  project?: string
 }
 
 export const gallery: GalleryShot[] = [
@@ -347,6 +354,7 @@ export const gallery: GalleryShot[] = [
       es: 'Plataforma de reserva de eventos: búsqueda, categorías y carrusel de eventos.',
       en: 'Event booking platform: search, categories and an events carousel.',
     },
+    project: 'resa-k',
   },
   {
     file: 'resa-k-auth.png',
@@ -355,6 +363,7 @@ export const gallery: GalleryShot[] = [
       es: 'Modal de login / registro con inicio de sesión mediante Google.',
       en: 'Login / sign-up modal with Google sign-in.',
     },
+    project: 'resa-k',
   },
   {
     file: 'resa-k-mobile.png',
@@ -363,6 +372,7 @@ export const gallery: GalleryShot[] = [
       es: 'Vista móvil con el menú de usuario: cotizaciones, reservas y notificaciones.',
       en: 'Mobile view with the user menu: quotes, bookings and notifications.',
     },
+    project: 'resa-k',
   },
 ]
 
@@ -407,6 +417,10 @@ export const ui: Record<
       close: string
       prev: string
       next: string
+    }
+    explorer: {
+      cta: string
+      folders: { description: string; stack: string; gallery: string }
     }
     skills: { heading: string; lead: string }
     contact: {
@@ -473,6 +487,14 @@ export const ui: Record<
       close: 'Cerrar',
       prev: 'Anterior',
       next: 'Siguiente',
+    },
+    explorer: {
+      cta: 'Explorar',
+      folders: {
+        description: 'Descripción',
+        stack: 'Stack y tecnologías',
+        gallery: 'Galería',
+      },
     },
     skills: {
       heading: 'Stack & Skills',
@@ -544,6 +566,14 @@ export const ui: Record<
       close: 'Close',
       prev: 'Previous',
       next: 'Next',
+    },
+    explorer: {
+      cta: 'Explore',
+      folders: {
+        description: 'Description',
+        stack: 'Stack & tech',
+        gallery: 'Gallery',
+      },
     },
     skills: {
       heading: 'Stack & Skills',

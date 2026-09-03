@@ -9,7 +9,12 @@ import {
 import { useI18n } from '../providers/i18n'
 import type { Project } from '../content'
 
-export function ProjectCard({ project }: { project: Project }) {
+interface ProjectCardProps {
+  project: Project
+  onExplore?: () => void
+}
+
+export function ProjectCard({ project, onExplore }: ProjectCardProps) {
   const { pick, t } = useI18n()
   const ref = useRef<HTMLElement>(null)
   const reduce = useReducedMotion()
@@ -91,7 +96,25 @@ export function ProjectCard({ project }: { project: Project }) {
         ))}
       </ul>
 
-      <footer className="mt-5 flex flex-wrap gap-4">
+      <footer className="mt-5 flex flex-wrap items-center gap-4">
+        {project.explorer && onExplore && (
+          <button
+            type="button"
+            onClick={onExplore}
+            className="group/link inline-flex items-center gap-1.5 text-sm font-medium text-[rgb(var(--text-strong))]"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="text-[rgb(var(--glow-a))]"
+            >
+              <path d="M3 6a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6Z" />
+            </svg>
+            {t.explorer.cta}
+          </button>
+        )}
         {project.links.map((link) => (
           <a
             key={link.label}

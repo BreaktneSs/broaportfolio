@@ -4,6 +4,7 @@ import { Section } from '../components/Section'
 import { useI18n } from '../providers/i18n'
 import { projects, type Project } from '../content'
 import { ProjectCard } from '../components/ProjectCard'
+import { ProjectExplorer } from '../components/ProjectExplorer'
 
 type Filter = Project['kind'] | 'all'
 const FILTERS: Filter[] = ['all', 'dev', 'devsecops', 'offensive', 'research']
@@ -11,6 +12,7 @@ const FILTERS: Filter[] = ['all', 'dev', 'devsecops', 'offensive', 'research']
 export function Work() {
   const { t } = useI18n()
   const [filter, setFilter] = useState<Filter>('all')
+  const [explorerProject, setExplorerProject] = useState<Project | null>(null)
 
   const visible = useMemo(
     () =>
@@ -55,11 +57,23 @@ export function Work() {
               exit={{ opacity: 0, scale: 0.94 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             >
-              <ProjectCard project={project} />
+              <ProjectCard
+                project={project}
+                onExplore={
+                  project.explorer
+                    ? () => setExplorerProject(project)
+                    : undefined
+                }
+              />
             </motion.div>
           ))}
         </AnimatePresence>
       </motion.div>
+
+      <ProjectExplorer
+        project={explorerProject}
+        onClose={() => setExplorerProject(null)}
+      />
     </Section>
   )
 }
