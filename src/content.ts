@@ -59,6 +59,37 @@ export const experience: ExperienceEntry[] = [
       'Vulnerability Management',
     ],
   },
+  {
+    role: {
+      es: 'Consultor de Ciberseguridad Junior',
+      en: 'Junior Cybersecurity Consultant',
+    },
+    company: 'Cross Border Technology',
+    // period: sin fecha exacta — edítala si la recuerdas (p. ej. '2024 — 2025').
+    period: { es: 'Anterior', en: 'Previous' },
+    summary: {
+      es: 'Pruebas de Red Team, ingeniería social y escaneo de vulnerabilidades para clientes, acompañando la remediación de los hallazgos. Investigación y desarrollo de herramientas internas, además de búsqueda de información sensible de clientes expuesta en la deep web.',
+      en: 'Red Team testing, social engineering and vulnerability scanning for clients, supporting remediation of findings. R&D of internal tooling, plus searching the deep web for clients’ exposed sensitive information.',
+    },
+    tags: [
+      'Red Team',
+      'Social Engineering',
+      'Vulnerability Scanning',
+      'Remediation',
+      'Deep Web OSINT',
+      'R&D',
+    ],
+  },
+  {
+    role: { es: 'Desarrollador Freelance', en: 'Freelance Developer' },
+    company: 'Freelance',
+    period: { es: '2023 — 2024', en: '2023 — 2024' },
+    summary: {
+      es: 'Desarrollo full-stack de Aukani (POS) y ResakApp como freelance independiente, incluyendo clientes de escritorio con Electron además de la versión web.',
+      en: 'Full-stack freelance development of Aukani (POS) and ResakApp, including Electron desktop clients alongside the web version.',
+    },
+    tags: ['Electron', 'React', 'TypeScript', 'Freelance'],
+  },
 ]
 
 /* ── Proyectos destacados ───────────────────────────────────── */
@@ -84,10 +115,17 @@ export const projects: Project[] = [
     year: '2024',
     kind: 'dev',
     summary: {
-      es: 'Sistema de punto de venta full-stack: gestión de productos, ventas, inventario y reportes, con control de acceso por roles. Diseño de la API y del frontend de principio a fin.',
-      en: 'Full-stack point-of-sale system: product management, sales, inventory and reports, with role-based access control. API and frontend designed end to end.',
+      es: 'Sistema de punto de venta full-stack: gestión de productos, ventas, inventario y reportes, con control de acceso por roles. Cliente de escritorio con Electron además de la API y el frontend, diseñados de principio a fin.',
+      en: 'Full-stack point-of-sale system: product management, sales, inventory and reports, with role-based access control. Electron desktop client alongside the API and frontend, designed end to end.',
     },
-    stack: ['React', 'TypeScript', 'REST API', 'PostgreSQL', 'RBAC'],
+    stack: [
+      'React',
+      'TypeScript',
+      'Electron',
+      'REST API',
+      'PostgreSQL',
+      'RBAC',
+    ],
     links: [],
     accent: 'linear-gradient(135deg,#22d3ee,#84cc16)',
   },
