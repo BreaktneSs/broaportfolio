@@ -348,6 +348,63 @@ export interface GalleryShot {
 
 export const gallery: GalleryShot[] = [
   {
+    file: 'aukani-login.png',
+    title: { es: 'Aukani POS — inicio de sesión', en: 'Aukani POS — sign in' },
+    caption: {
+      es: 'Ventana de acceso de la app de escritorio (Electron): usuario con dominio fijo @aukani.com, contraseña y acceso remoto por túnel SSH desde la barra superior.',
+      en: 'Desktop app (Electron) sign-in window: domain-scoped username (@aukani.com), password field, and SSH-tunnel remote access from the top bar.',
+    },
+    project: 'aukani-pos',
+  },
+  {
+    file: 'aukani-2fa.png',
+    title: { es: 'Verificación en dos pasos', en: 'Two-factor authentication' },
+    caption: {
+      es: 'TOTP compatible con Google Authenticator / Authy tras el login. También muestra el tema claro de la aplicación.',
+      en: 'TOTP 2FA compatible with Google Authenticator / Authy after login. Also shows the app’s light theme.',
+    },
+    project: 'aukani-pos',
+  },
+  {
+    file: 'aukani-nav.png',
+    title: { es: 'Navegación principal', en: 'Main navigation' },
+    caption: {
+      es: 'Módulos del sistema: Caja, Caja remota, Despachos, Reservas, Inventario, Compras, Ventas/Devoluciones, Control de caja, Dashboard, Configuración y Auditoría.',
+      en: 'System modules: register, remote register, dispatch, bookings, inventory, purchasing, sales/returns, cash-drawer control, dashboard, settings and audit log.',
+    },
+    project: 'aukani-pos',
+  },
+  {
+    file: 'aukani-checkout.jpg',
+    title: { es: 'Punto de venta (Caja)', en: 'Point of sale (register)' },
+    caption: {
+      es: 'Ventas simultáneas en pestañas, búsqueda o escaneo de código de barras, catálogo filtrado por categoría con existencias en vivo, carrito editable y cobro o división de cuenta.',
+      en: 'Multiple sales in tabs, barcode search/scan, category-filtered catalogue with live stock, an editable cart, and checkout or split-bill.',
+    },
+    project: 'aukani-pos',
+  },
+  {
+    file: 'aukani-remote-access.png',
+    title: {
+      es: 'Acceso remoto por túnel SSH',
+      en: 'Remote access via SSH tunnel',
+    },
+    caption: {
+      es: 'Conexión al servidor mediante túnel SSH (host, puerto, usuario y contraseña) para operar la caja fuera de la red local.',
+      en: 'Connects to the server over an SSH tunnel (host, port, user, password) so the register can run outside the local network.',
+    },
+    project: 'aukani-pos',
+  },
+  {
+    file: 'aukani-dashboard.png',
+    title: { es: 'Dashboard de contabilidad', en: 'Accounting dashboard' },
+    caption: {
+      es: 'Ingresos, ticket promedio, transacciones y cancelaciones por periodo; tendencia de ventas con tooltip por día y desglose por método de pago (efectivo / Nequi).',
+      en: 'Revenue, average ticket, transactions and cancellations by period; a sales trend with per-day tooltip, and a payment-method breakdown (cash / Nequi).',
+    },
+    project: 'aukani-pos',
+  },
+  {
     file: 'resa-k-home.png',
     title: { es: 'Resa-K — inicio', en: 'Resa-K — home' },
     caption: {
