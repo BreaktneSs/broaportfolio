@@ -13,7 +13,7 @@ export function Skills() {
       heading={t.skills.heading}
       lead={t.skills.lead}
     >
-      <div className="grid gap-5 md:grid-cols-3">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {skillGroups.map((group, i) => (
           <Reveal key={pick(group.label)} from="up" delay={i * 0.08}>
             <div className="glass h-full rounded-3xl p-6">

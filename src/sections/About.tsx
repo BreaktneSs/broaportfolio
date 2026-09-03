@@ -39,7 +39,7 @@ export function About() {
             {t.about.focusHeading}
           </h3>
         </Reveal>
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {focusAreas.map((area, i) => (
             <Reveal key={pick(area.title)} from="up" delay={i * 0.08}>
               <div className="glass h-full rounded-2xl p-6">

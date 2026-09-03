@@ -1,7 +1,7 @@
 # broaportfolio
 
-Portfolio personal de **Brayan Roa** — ethical hacker y consultor de
-ciberseguridad (Red Team, análisis de vulnerabilidades, ingeniería social).
+Portfolio personal de **Brayan Roa** — ethical hacker y desarrollador full-stack
+(desarrollo web, DevSecOps, Red Team, ingeniería social).
 
 🔗 **https://breaktnes.github.io/broaportfolio/**
 

@@ -16,8 +16,8 @@ export const profile = {
   name: 'Brayan Roa',
   handle: '@BreaktneSs',
   role: {
-    es: 'Ethical Hacker · Consultor de Ciberseguridad',
-    en: 'Ethical Hacker · Cybersecurity Consultant',
+    es: 'Ethical Hacker & Desarrollador Full-Stack',
+    en: 'Ethical Hacker & Full-Stack Developer',
   },
   email: 'broaprieto09@gmail.com',
   location: { es: 'Colombia · remoto', en: 'Colombia · remote' },
@@ -30,7 +30,7 @@ export const profile = {
 
 /* ── Proyectos destacados ───────────────────────────────────── */
 
-export type ProjectKind = 'offensive' | 'tooling' | 'research' | 'web'
+export type ProjectKind = 'offensive' | 'devsecops' | 'dev' | 'research'
 
 export interface Project {
   slug: string
@@ -45,6 +45,32 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  {
+    slug: 'aukani-pos',
+    title: 'Aukani POS',
+    year: '2024',
+    kind: 'dev',
+    summary: {
+      es: 'Sistema de punto de venta full-stack: gestión de productos, ventas, inventario y reportes, con control de acceso por roles. Diseño de la API y del frontend de principio a fin.',
+      en: 'Full-stack point-of-sale system: product management, sales, inventory and reports, with role-based access control. API and frontend designed end to end.',
+    },
+    stack: ['React', 'TypeScript', 'REST API', 'PostgreSQL', 'RBAC'],
+    links: [],
+    accent: 'linear-gradient(135deg,#22d3ee,#84cc16)',
+  },
+  {
+    slug: 'insecure-backend-devsecops',
+    title: 'Backend Inseguro · DevSecOps',
+    year: '2025',
+    kind: 'devsecops',
+    summary: {
+      es: 'API backend deliberadamente vulnerable como banco de pruebas para montar pipelines de seguridad en CI/CD (SAST, DAST y análisis de dependencias) y practicar el ciclo completo de detección y remediación de vulnerabilidades.',
+      en: 'A deliberately vulnerable backend API used as a testbed to build security pipelines in CI/CD (SAST, DAST and dependency scanning) and practise the full detect-and-remediate vulnerability loop.',
+    },
+    stack: ['GitHub Actions', 'SAST / DAST', 'Semgrep', 'OWASP ZAP', 'Docker'],
+    links: [],
+    accent: 'linear-gradient(135deg,#84cc16,#0ea5e9)',
+  },
   {
     slug: 'red-team-public-sector',
     title: 'Red Team · Sector Público',
@@ -75,7 +101,7 @@ export const projects: Project[] = [
     slug: 'wifi-marauder',
     title: 'Wi-Fi Marauder',
     year: '2025',
-    kind: 'tooling',
+    kind: 'offensive',
     summary: {
       es: 'ESP32 con firmware personalizado (JustCallMeKoko) controlado desde un Flipper Zero para ataques Wi-Fi: packet flooding, deautenticación, captura de handshakes y despliegue de captive portal.',
       en: 'ESP32 flashed with custom firmware (JustCallMeKoko) driven from a Flipper Zero for Wi-Fi attacks: packet flooding, deauth, handshake capture and captive-portal deployment.',
@@ -93,14 +119,27 @@ export const projects: Project[] = [
     slug: 'tls-config-auditor',
     title: 'TLS Config Auditor',
     year: '2025',
-    kind: 'tooling',
+    kind: 'devsecops',
     summary: {
-      es: 'Herramienta en Python sobre Nmap que automatiza la detección de configuraciones TLS inseguras (protocolos y cifrados obsoletos) en hosts objetivo, con salida en consola enriquecida y flujo guiado por menú.',
-      en: 'Python tool wrapping Nmap that automates detection of insecure TLS configurations (legacy protocols and weak ciphers) on target hosts, with a rich console UI and a menu-driven flow.',
+      es: 'Herramienta en Python sobre Nmap que automatiza la detección de configuraciones TLS inseguras (protocolos y cifrados obsoletos) en hosts objetivo, con salida en consola enriquecida y flujo guiado por menú. Pensada para integrarse en un pipeline.',
+      en: 'Python tool wrapping Nmap that automates detection of insecure TLS configurations (legacy protocols and weak ciphers) on target hosts, with a rich console UI and a menu-driven flow. Built to slot into a pipeline.',
     },
     stack: ['Python', 'Nmap', 'ssl-enum-ciphers', 'rich'],
     links: [{ label: 'Código', href: 'https://github.com/BreaktneSs' }],
     accent: 'linear-gradient(135deg,#84cc16,#0ea5e9)',
+  },
+  {
+    slug: 'resa-k',
+    title: 'Resa-K',
+    year: '2025',
+    kind: 'dev',
+    summary: {
+      es: 'Plataforma web de reserva de eventos: búsqueda y filtrado, categorías, autenticación con Google y panel de usuario (cotizaciones, reservas, notificaciones). Diseño responsive. Capturas en la galería.',
+      en: 'Event-booking web platform: search and filtering, categories, Google auth and a user dashboard (quotes, bookings, notifications). Responsive design. Screenshots in the gallery.',
+    },
+    stack: ['React', 'Tailwind', 'OAuth', 'REST'],
+    links: [{ label: 'Galería', href: '#gallery' }],
+    accent: 'linear-gradient(135deg,#22d3ee,#84cc16)',
   },
   {
     slug: 'vm-anti-detection',
@@ -115,19 +154,6 @@ export const projects: Project[] = [
     links: [],
     accent: 'linear-gradient(135deg,#65a30d,#22d3ee)',
   },
-  {
-    slug: 'resa-k',
-    title: 'Resa-K',
-    year: '2025',
-    kind: 'web',
-    summary: {
-      es: 'Plataforma web de reserva de eventos: búsqueda y filtrado, categorías, autenticación con Google y panel de usuario (cotizaciones, reservas, notificaciones). Diseño responsive. Capturas en la galería.',
-      en: 'Event-booking web platform: search and filtering, categories, Google auth and a user dashboard (quotes, bookings, notifications). Responsive design. Screenshots in the gallery.',
-    },
-    stack: ['React', 'Tailwind', 'OAuth', 'REST'],
-    links: [{ label: 'Galería', href: '#gallery' }],
-    accent: 'linear-gradient(135deg,#22d3ee,#84cc16)',
-  },
 ]
 
 /* ── Skills ─────────────────────────────────────────────────── */
@@ -138,6 +164,29 @@ export interface SkillGroup {
 }
 
 export const skillGroups: SkillGroup[] = [
+  {
+    label: { es: 'Desarrollo', en: 'Development' },
+    items: [
+      'React',
+      'TypeScript',
+      'Node.js',
+      'REST APIs',
+      'Tailwind CSS',
+      'PostgreSQL',
+      'Git',
+    ],
+  },
+  {
+    label: { es: 'DevSecOps & remediación', en: 'DevSecOps & remediation' },
+    items: [
+      'CI/CD · GitHub Actions',
+      'SAST / DAST',
+      'Dependency scanning',
+      'Docker',
+      'TLS / SSL auditing',
+      'Hardening',
+    ],
+  },
   {
     label: { es: 'Red Team & Ofensiva', en: 'Red Team & Offensive' },
     items: [
@@ -152,28 +201,15 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    label: {
-      es: 'Análisis de vulnerabilidades',
-      en: 'Vulnerability analysis',
-    },
+    label: { es: 'Análisis & Labs', en: 'Analysis & Labs' },
     items: [
       'Nessus',
       'OpenVAS',
-      'TLS / SSL auditing',
       'OWASP Top 10',
-      'Hardening',
-      'Remediation & reporting',
-    ],
-  },
-  {
-    label: { es: 'Automatización & Labs', en: 'Automation & Labs' },
-    items: [
       'Python',
       'PowerShell',
-      'Bash',
       'QEMU / KVM',
-      'Libvirt / Virt-Manager',
-      'Docker',
+      'Libvirt',
       'Apache JMeter',
     ],
   },
@@ -188,6 +224,20 @@ export interface FocusArea {
 
 export const focusAreas: FocusArea[] = [
   {
+    title: { es: 'Desarrollo full-stack', en: 'Full-stack development' },
+    body: {
+      es: 'Productos web de principio a fin: React y TypeScript en el front, APIs REST y base de datos en el back, con control de acceso por roles.',
+      en: 'Web products end to end: React and TypeScript on the front, REST APIs and a database on the back, with role-based access control.',
+    },
+  },
+  {
+    title: { es: 'DevSecOps & remediación', en: 'DevSecOps & remediation' },
+    body: {
+      es: 'Pipelines de seguridad en CI/CD (SAST, DAST y dependencias) y el ciclo completo de detección, priorización y remediación de vulnerabilidades.',
+      en: 'Security pipelines in CI/CD (SAST, DAST and dependencies) and the full detect, triage and remediate vulnerability loop.',
+    },
+  },
+  {
     title: { es: 'Simulación Red Team', en: 'Red Team simulation' },
     body: {
       es: 'Simulación de ataques reales, estilo Red Team, sobre sector público e instituciones financieras.',
@@ -195,17 +245,10 @@ export const focusAreas: FocusArea[] = [
     },
   },
   {
-    title: { es: 'Análisis de vulnerabilidades', en: 'Vulnerability analysis' },
-    body: {
-      es: 'Análisis de vulnerabilidades y acompañamiento a clientes para implementar estrategias de remediación efectivas.',
-      en: 'Vulnerability analysis and close work with clients to implement effective remediation strategies.',
-    },
-  },
-  {
     title: { es: 'Ingeniería social', en: 'Social engineering' },
     body: {
-      es: 'Pruebas de ingeniería social, físicas y de phishing, en organizaciones públicas.',
-      en: 'Social-engineering tests, both physical and phishing-based, in public organisations.',
+      es: 'Pruebas de ingeniería social, físicas y de phishing, en organizaciones públicas, con formación posterior al personal.',
+      en: 'Social-engineering tests, both physical and phishing-based, in public organisations, with follow-up staff training.',
     },
   },
 ]
@@ -314,9 +357,9 @@ export const ui: Record<
       contact: 'Contacto',
     },
     hero: {
-      kicker: 'Ethical Hacker · Consultor de Ciberseguridad',
-      title: ['Encuentro el fallo', 'antes de que', 'lo haga otro.'],
-      lead: 'Consultor de ciberseguridad especializado en Red Team, análisis de vulnerabilidades e ingeniería social para el sector público y financiero.',
+      kicker: 'Ethical Hacker & Desarrollador Full-Stack',
+      title: ['Construyo software.', 'Y sé exactamente', 'cómo romperlo.'],
+      lead: 'Desarrollo full-stack y seguridad ofensiva. Construyo productos web y los pipelines que los mantienen seguros — y hago Red Team cuando toca romperlos.',
       ctaWork: 'Ver proyectos',
       ctaContact: 'Hablemos',
       scroll: 'Desplázate',
@@ -324,26 +367,26 @@ export const ui: Record<
     about: {
       heading: 'Perfil',
       body: [
-        'Soy Brayan Roa, ethical hacker y consultor de ciberseguridad con 2 años de experiencia. Actualmente curso la certificación CEH (EC-Council).',
-        'Me muevo con Nmap, Metasploit, OpenVAS, Burp Suite, Nessus y OWASP ZAP, entre otras. He trabajado sobre todo con instituciones del sector público y financiero: simulacros Red Team, análisis de vulnerabilidades y campañas de ingeniería social — físicas y de phishing.',
+        'Soy Brayan Roa, desarrollador y ethical hacker con 3 años de experiencia. Actualmente curso la certificación CEH (EC-Council).',
+        'En desarrollo trabajo full-stack con React, TypeScript y APIs REST (Aukani POS, Resa-K). En seguridad me muevo con Nmap, Metasploit, Burp Suite, Nessus y OWASP ZAP: Red Team para sector público y financiero, análisis de vulnerabilidades, pipelines DevSecOps e ingeniería social.',
       ],
       focusHeading: 'En qué me especializo',
       stats: [
-        { value: '2+', label: 'años en seguridad ofensiva' },
+        { value: '3+', label: 'años entre dev y seguridad' },
         { value: 'CEH', label: 'en progreso · EC-Council' },
-        { value: '6', label: 'proyectos destacados' },
+        { value: '8', label: 'proyectos destacados' },
       ],
     },
     work: {
       heading: 'Proyectos',
-      lead: 'Una selección de trabajo en Red Team, herramientas, investigación y web.',
+      lead: 'Una selección de desarrollo, DevSecOps, Red Team e investigación.',
       all: 'Todos',
       filters: {
         all: 'Todos',
+        dev: 'Desarrollo',
+        devsecops: 'DevSecOps',
         offensive: 'Red Team',
-        tooling: 'Herramientas',
         research: 'Investigación',
-        web: 'Web',
       },
     },
     gallery: {
@@ -356,11 +399,11 @@ export const ui: Record<
     },
     skills: {
       heading: 'Stack & Skills',
-      lead: 'Las herramientas con las que me muevo cómodo.',
+      lead: 'Las herramientas con las que me muevo cómodo, del código al exploit.',
     },
     contact: {
       heading: 'Trabajemos juntos',
-      lead: '¿Necesitas un Red Team, una auditoría o una prueba de ingeniería social? Escríbeme.',
+      lead: '¿Un producto que construir, un pipeline que asegurar o un Red Team? Escríbeme.',
       cta: 'Enviar correo',
       availability: 'Disponible para proyectos',
     },
@@ -380,9 +423,9 @@ export const ui: Record<
       contact: 'Contact',
     },
     hero: {
-      kicker: 'Ethical Hacker · Cybersecurity Consultant',
-      title: ['I find the flaw', 'before someone', 'else does.'],
-      lead: 'Cybersecurity consultant focused on red teaming, vulnerability analysis and social engineering for public-sector and financial institutions.',
+      kicker: 'Ethical Hacker & Full-Stack Developer',
+      title: ['I build software.', 'And I know exactly', 'how to break it.'],
+      lead: 'Full-stack development and offensive security. I build web products and the pipelines that keep them secure — and I red-team them when it’s time to break them.',
       ctaWork: 'View work',
       ctaContact: "Let's talk",
       scroll: 'Scroll',
@@ -390,26 +433,26 @@ export const ui: Record<
     about: {
       heading: 'About',
       body: [
-        "I'm Brayan Roa, an ethical hacker and cybersecurity consultant with 2 years of experience. I'm currently pursuing the CEH certification (EC-Council).",
-        'I work with Nmap, Metasploit, OpenVAS, Burp Suite, Nessus and OWASP ZAP, among others. Most of my work has been with public-sector and financial institutions: Red Team exercises, vulnerability analysis and social-engineering campaigns — both physical and phishing-based.',
+        "I'm Brayan Roa, a developer and ethical hacker with 3 years of experience. I'm currently pursuing the CEH certification (EC-Council).",
+        'On the build side I work full-stack with React, TypeScript and REST APIs (Aukani POS, Resa-K). On the security side I use Nmap, Metasploit, Burp Suite, Nessus and OWASP ZAP: Red Team for public-sector and financial institutions, vulnerability analysis, DevSecOps pipelines and social engineering.',
       ],
       focusHeading: 'What I focus on',
       stats: [
-        { value: '2+', label: 'years in offensive security' },
+        { value: '3+', label: 'years across dev & security' },
         { value: 'CEH', label: 'in progress · EC-Council' },
-        { value: '6', label: 'featured projects' },
+        { value: '8', label: 'featured projects' },
       ],
     },
     work: {
       heading: 'Work',
-      lead: 'A selection of Red Team, tooling, research and web projects.',
+      lead: 'A selection of development, DevSecOps, Red Team and research projects.',
       all: 'All',
       filters: {
         all: 'All',
+        dev: 'Development',
+        devsecops: 'DevSecOps',
         offensive: 'Red Team',
-        tooling: 'Tooling',
         research: 'Research',
-        web: 'Web',
       },
     },
     gallery: {
@@ -422,11 +465,11 @@ export const ui: Record<
     },
     skills: {
       heading: 'Stack & Skills',
-      lead: 'The tools I move comfortably with.',
+      lead: 'The tools I move comfortably with, from code to exploit.',
     },
     contact: {
       heading: "Let's work together",
-      lead: 'Need a red team, an audit or a social-engineering test? Drop me a line.',
+      lead: 'A product to build, a pipeline to secure or a red team? Drop me a line.',
       cta: 'Send email',
       availability: 'Available for engagements',
     },
