@@ -420,6 +420,7 @@ export const ui: Record<
     }
     explorer: {
       cta: string
+      back: string
       folders: { description: string; stack: string; gallery: string }
     }
     skills: { heading: string; lead: string }
@@ -490,6 +491,7 @@ export const ui: Record<
     },
     explorer: {
       cta: 'Explorar',
+      back: 'Atrás',
       folders: {
         description: 'Descripción',
         stack: 'Stack y tecnologías',
@@ -569,6 +571,7 @@ export const ui: Record<
     },
     explorer: {
       cta: 'Explore',
+      back: 'Back',
       folders: {
         description: 'Description',
         stack: 'Stack & tech',
