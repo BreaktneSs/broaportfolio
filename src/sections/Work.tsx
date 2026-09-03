@@ -19,7 +19,7 @@ export function Work() {
   )
 
   return (
-    <Section id="work" index="02" heading={t.work.heading} lead={t.work.lead}>
+    <Section id="work" index="03" heading={t.work.heading} lead={t.work.lead}>
       <div className="mb-8 flex flex-wrap gap-2">
         {FILTERS.map((f) => (
           <button

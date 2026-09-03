@@ -28,6 +28,39 @@ export const profile = {
   ],
 } as const
 
+/* ── Experiencia profesional ────────────────────────────────── */
+
+export interface ExperienceEntry {
+  role: Record<Locale, string>
+  company: string
+  companyUrl?: string
+  period: Record<Locale, string>
+  summary: Record<Locale, string>
+  tags: string[]
+}
+
+export const experience: ExperienceEntry[] = [
+  {
+    role: {
+      es: 'Analista de Seguridad · Revisión de código',
+      en: 'Security Analyst · Code Review',
+    },
+    company: 'Fluid Attacks',
+    companyUrl: 'https://fluidattacks.com',
+    period: { es: 'Actual', en: 'Current' },
+    summary: {
+      es: 'Revisión manual de código fuente para encontrar vulnerabilidades en aplicaciones de clientes de múltiples sectores en Colombia. Catalogo y priorizo cada hallazgo bajo el estándar CVSS v4.0 y acompaño su remediación junto a los equipos de desarrollo.',
+      en: 'Manual source-code review to find vulnerabilities in applications for clients across multiple sectors in Colombia. I catalogue and prioritise every finding under the CVSS v4.0 standard and support remediation alongside development teams.',
+    },
+    tags: [
+      'Code Review',
+      'SAST manual',
+      'CVSS v4.0',
+      'Vulnerability Management',
+    ],
+  },
+]
+
 /* ── Proyectos destacados ───────────────────────────────────── */
 
 export type ProjectKind = 'offensive' | 'devsecops' | 'dev' | 'research'
@@ -303,6 +336,7 @@ export const ui: Record<
   {
     nav: {
       about: string
+      experience: string
       work: string
       gallery: string
       skills: string
@@ -322,6 +356,7 @@ export const ui: Record<
       focusHeading: string
       stats: { value: string; label: string }[]
     }
+    experience: { heading: string; lead: string }
     work: {
       heading: string
       lead: string
@@ -351,6 +386,7 @@ export const ui: Record<
   es: {
     nav: {
       about: 'Perfil',
+      experience: 'Experiencia',
       work: 'Proyectos',
       gallery: 'Galería',
       skills: 'Skills',
@@ -376,6 +412,10 @@ export const ui: Record<
         { value: 'CEH', label: 'en progreso · EC-Council' },
         { value: '8', label: 'proyectos destacados' },
       ],
+    },
+    experience: {
+      heading: 'Experiencia',
+      lead: 'Dónde aplico esto en el día a día, de forma profesional.',
     },
     work: {
       heading: 'Proyectos',
@@ -417,6 +457,7 @@ export const ui: Record<
   en: {
     nav: {
       about: 'About',
+      experience: 'Experience',
       work: 'Work',
       gallery: 'Gallery',
       skills: 'Skills',
@@ -442,6 +483,10 @@ export const ui: Record<
         { value: 'CEH', label: 'in progress · EC-Council' },
         { value: '8', label: 'featured projects' },
       ],
+    },
+    experience: {
+      heading: 'Experience',
+      lead: 'Where I put this to work, professionally, day to day.',
     },
     work: {
       heading: 'Work',

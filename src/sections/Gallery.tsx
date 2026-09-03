@@ -43,7 +43,7 @@ export function Gallery() {
   return (
     <Section
       id="gallery"
-      index="03"
+      index="04"
       heading={t.gallery.heading}
       lead={t.gallery.lead}
     >

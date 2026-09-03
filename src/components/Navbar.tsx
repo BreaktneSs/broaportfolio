@@ -5,7 +5,14 @@ import { useScrollSpy } from '../hooks/useScrollSpy'
 import { profile } from '../content'
 import { LangToggle, ThemeToggle } from './Toggles'
 
-const SECTIONS = ['about', 'work', 'gallery', 'skills', 'contact'] as const
+const SECTIONS = [
+  'about',
+  'experience',
+  'work',
+  'gallery',
+  'skills',
+  'contact',
+] as const
 
 export function Navbar() {
   const { t } = useI18n()

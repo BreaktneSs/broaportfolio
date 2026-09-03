@@ -7,6 +7,7 @@ import { ScrollProgress } from './components/ScrollProgress'
 import { Navbar } from './components/Navbar'
 import { Hero } from './sections/Hero'
 import { About } from './sections/About'
+import { Experience } from './sections/Experience'
 import { Work } from './sections/Work'
 import { Gallery } from './sections/Gallery'
 import { Skills } from './sections/Skills'
@@ -25,6 +26,7 @@ function Shell() {
       <main>
         <Hero />
         <About />
+        <Experience />
         <Work />
         <Gallery />
         <Skills />
