@@ -31,6 +31,11 @@ npm run format     # prettier
 Todo el texto, los proyectos y las skills viven en un único archivo:
 [`src/content.ts`](src/content.ts). Cambia los valores y el sitio se actualiza.
 
+**Galería:** suelta capturas (`png` / `jpg` / `webp` / `avif`) en
+[`src/assets/gallery/`](src/assets/gallery/) y añade una entrada en el array
+`gallery` de `src/content.ts` con el mismo nombre de archivo. Se resuelven con
+`import.meta.glob` (hash en build) y se abren en un visor con teclado.
+
 ## Despliegue (GitHub Pages)
 
 El workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) hace

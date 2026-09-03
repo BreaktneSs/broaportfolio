@@ -149,7 +149,7 @@ export const skillGroups: SkillGroup[] = [
  * Suelta tus imágenes (png / jpg / webp / avif / svg) en
  *   src/assets/gallery/
  * y añade una entrada aquí con el mismo nombre de archivo en `file`.
- * `tall: true` destaca la captura ocupando dos columnas del mosaico.
+ * El mosaico es masonry: cada imagen mantiene su proporción real.
  * `href` (opcional) añade un enlace externo en el visor.
  */
 
@@ -157,42 +157,32 @@ export interface GalleryShot {
   file: string
   title: Record<Locale, string>
   caption: Record<Locale, string>
-  tall?: boolean
   href?: string
 }
 
 export const gallery: GalleryShot[] = [
   {
-    file: 'dashboard.svg',
-    title: { es: 'Panel en tiempo real', en: 'Realtime dashboard' },
+    file: 'resa-k-home.png',
+    title: { es: 'Resa-K — inicio', en: 'Resa-K — home' },
     caption: {
-      es: 'Métricas en vivo, gráficas y tablas — React + WebSocket.',
-      en: 'Live metrics, charts and tables — React + WebSocket.',
-    },
-    tall: true,
-  },
-  {
-    file: 'recon-tool.svg',
-    title: { es: 'Recon Toolkit (CLI)', en: 'Recon Toolkit (CLI)' },
-    caption: {
-      es: 'Automatización de reconocimiento en ejecución sobre un objetivo de laboratorio.',
-      en: 'Recon automation running against a lab target.',
+      es: 'Plataforma de reserva de eventos: búsqueda, categorías y carrusel de eventos.',
+      en: 'Event booking platform: search, categories and an events carousel.',
     },
   },
   {
-    file: 'mobile-app.svg',
-    title: { es: 'App móvil de finanzas', en: 'Finance mobile app' },
+    file: 'resa-k-auth.png',
+    title: { es: 'Resa-K — acceso', en: 'Resa-K — auth' },
     caption: {
-      es: 'Cliente React Native — balance, movimientos y navegación.',
-      en: 'React Native client — balance, transactions and navigation.',
+      es: 'Modal de login / registro con inicio de sesión mediante Google.',
+      en: 'Login / sign-up modal with Google sign-in.',
     },
   },
   {
-    file: 'landing.svg',
-    title: { es: 'Landing de producto', en: 'Product landing' },
+    file: 'resa-k-mobile.png',
+    title: { es: 'Resa-K — responsive', en: 'Resa-K — responsive' },
     caption: {
-      es: 'Página de marketing con animaciones y modo claro.',
-      en: 'Marketing page with animations and light mode.',
+      es: 'Vista móvil con el menú de usuario: cotizaciones, reservas y notificaciones.',
+      en: 'Mobile view with the user menu: quotes, bookings and notifications.',
     },
   },
 ]

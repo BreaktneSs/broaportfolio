@@ -52,7 +52,7 @@ export function Gallery() {
           {t.gallery.empty}
         </p>
       ) : (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {items.map(({ shot, url }, i) => (
             <motion.button
               type="button"
@@ -62,9 +62,7 @@ export function Gallery() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '0px 0px -10% 0px' }}
               transition={{ duration: 0.5, delay: (i % 3) * 0.06 }}
-              className={`group glass relative aspect-[16/10] overflow-hidden rounded-2xl text-left ${
-                shot.tall ? 'sm:col-span-2 sm:aspect-[16/9]' : ''
-              }`}
+              className="group glass relative block aspect-[4/3] overflow-hidden rounded-2xl text-left"
             >
               <img
                 src={url}
@@ -73,7 +71,7 @@ export function Gallery() {
                 decoding="async"
                 className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
               />
-              <div className="absolute inset-0 bg-[linear-gradient(to_top,rgb(0_0_0/0.85),transparent_55%)]" />
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgb(0_0_0/0.85),transparent_45%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               <div className="absolute inset-x-0 bottom-0 translate-y-1 p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                 <p className="text-sm font-medium text-white">
                   {pick(shot.title)}
