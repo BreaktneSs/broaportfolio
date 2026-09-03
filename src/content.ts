@@ -65,8 +65,7 @@ export const experience: ExperienceEntry[] = [
       en: 'Junior Cybersecurity Consultant',
     },
     company: 'Cross Border Technology',
-    // period: sin fecha exacta — edítala si la recuerdas (p. ej. '2024 — 2025').
-    period: { es: 'Anterior', en: 'Previous' },
+    period: { es: '2024 — 2025', en: '2024 — 2025' },
     summary: {
       es: 'Pruebas de Red Team, ingeniería social y escaneo de vulnerabilidades para clientes, acompañando la remediación de los hallazgos. Investigación y desarrollo de herramientas internas, además de búsqueda de información sensible de clientes expuesta en la deep web.',
       en: 'Red Team testing, social engineering and vulnerability scanning for clients, supporting remediation of findings. R&D of internal tooling, plus searching the deep web for clients’ exposed sensitive information.',
