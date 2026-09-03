@@ -25,7 +25,7 @@ export function Aurora() {
         className="animate-aurora absolute top-1/3 -right-52 h-[38rem] w-[38rem] rounded-full bg-[radial-gradient(circle,rgb(var(--glow-b)/0.4),transparent_60%)] blur-3xl"
         style={{ animationDirection: 'reverse', animationDuration: '24s' }}
       />
-      <div className="absolute bottom-0 left-1/4 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgb(236_72_153/0.28),transparent_60%)] blur-3xl" />
+      <div className="absolute bottom-0 left-1/4 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgb(16_185_129/0.28),transparent_60%)] blur-3xl" />
 
       {/* viñeta */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,rgb(var(--bg-base)/0.8)_100%)]" />

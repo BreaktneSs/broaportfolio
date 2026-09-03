@@ -6,7 +6,7 @@ import { projects, type Project } from '../content'
 import { ProjectCard } from '../components/ProjectCard'
 
 type Filter = Project['kind'] | 'all'
-const FILTERS: Filter[] = ['all', 'frontend', 'fullstack', 'security']
+const FILTERS: Filter[] = ['all', 'offensive', 'tooling', 'research', 'web']
 
 export function Work() {
   const { t } = useI18n()

@@ -13,25 +13,30 @@ export const DEFAULT_LOCALE: Locale = 'es'
 /* ── Datos personales ───────────────────────────────────────── */
 
 export const profile = {
-  name: 'BreaktneSs',
+  name: 'Brayan Roa',
   handle: '@BreaktneSs',
+  role: {
+    es: 'Ethical Hacker · Consultor de Ciberseguridad',
+    en: 'Ethical Hacker · Cybersecurity Consultant',
+  },
   email: 'broaprieto09@gmail.com',
-  location: { es: 'España · remoto', en: 'Spain · remote' },
+  location: { es: 'Colombia · remoto', en: 'Colombia · remote' },
   socials: [
     { label: 'GitHub', href: 'https://github.com/BreaktneSs' },
     { label: 'Email', href: 'mailto:broaprieto09@gmail.com' },
     // { label: 'LinkedIn', href: 'https://linkedin.com/in/…' },
-    // { label: 'X', href: 'https://x.com/…' },
   ],
 } as const
 
 /* ── Proyectos destacados ───────────────────────────────────── */
 
+export type ProjectKind = 'offensive' | 'tooling' | 'research' | 'web'
+
 export interface Project {
   slug: string
   title: string
   year: string
-  kind: 'security' | 'frontend' | 'fullstack'
+  kind: ProjectKind
   summary: Record<Locale, string>
   stack: string[]
   links: { label: string; href: string }[]
@@ -41,61 +46,87 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: 'broaportfolio',
-    title: 'broaportfolio',
-    year: '2026',
-    kind: 'frontend',
+    slug: 'red-team-public-sector',
+    title: 'Red Team · Sector Público',
+    year: '2024',
+    kind: 'offensive',
     summary: {
-      es: 'Este mismo sitio: SPA en React 19 + Vite, Tailwind v4, animaciones con Motion y una escena WebGL sutil con React Three Fiber. Bilingüe y desplegado en GitHub Pages.',
-      en: 'This very site: a React 19 + Vite SPA with Tailwind v4, Motion animations and a subtle WebGL scene via React Three Fiber. Bilingual and deployed to GitHub Pages.',
+      es: 'Ejercicios Red Team para instituciones públicas: simulación de DDoS localizado con una botnet desplegada dentro de Colombia y defacement de una web interna para poner a prueba la respuesta a incidentes y la resiliencia de los sistemas.',
+      en: 'Red Team engagements for public institutions: a localised DDoS simulation using a botnet deployed within Colombia and the defacement of an internal web page to test incident response and system resilience.',
     },
-    stack: ['React 19', 'TypeScript', 'Vite', 'Tailwind v4', 'Motion', 'R3F'],
-    links: [
-      { label: 'Código', href: 'https://github.com/BreaktneSs/broaportfolio' },
-    ],
-    accent: 'linear-gradient(135deg,#8b4dff,#22d3ee)',
+    stack: ['Apache JMeter', 'GlassFish', 'C2', 'DDoS sim'],
+    links: [],
+    accent: 'linear-gradient(135deg,#84cc16,#22d3ee)',
   },
   {
-    slug: 'recon-toolkit',
-    title: 'Recon Toolkit',
+    slug: 'physical-social-engineering',
+    title: 'Ingeniería Social Física',
+    year: '2024',
+    kind: 'offensive',
+    summary: {
+      es: 'Campañas de ingeniería social en organizaciones públicas y sus sedes: piggybacking, tailgating y skimming. Cada ejercicio se cerró con formación al personal mediante métodos de shock therapy para elevar la concienciación y mejorar la seguridad física.',
+      en: 'Social-engineering campaigns across public organisations and their branches: piggybacking, tailgating and skimming. Each exercise closed with staff training using shock-therapy methods to raise awareness and improve physical security.',
+    },
+    stack: ['Piggybacking', 'Tailgating', 'Phishing', 'OSINT'],
+    links: [],
+    accent: 'linear-gradient(135deg,#22d3ee,#65a30d)',
+  },
+  {
+    slug: 'wifi-marauder',
+    title: 'Wi-Fi Marauder',
     year: '2025',
-    kind: 'security',
+    kind: 'tooling',
     summary: {
-      es: 'Placeholder — describe aquí una herramienta o investigación de seguridad ofensiva: automatización de reconocimiento, hallazgos, impacto.',
-      en: 'Placeholder — describe an offensive-security tool or research here: recon automation, findings, impact.',
+      es: 'ESP32 con firmware personalizado (JustCallMeKoko) controlado desde un Flipper Zero para ataques Wi-Fi: packet flooding, deautenticación, captura de handshakes y despliegue de captive portal.',
+      en: 'ESP32 flashed with custom firmware (JustCallMeKoko) driven from a Flipper Zero for Wi-Fi attacks: packet flooding, deauth, handshake capture and captive-portal deployment.',
     },
-    stack: ['Python', 'Nmap', 'Burp', 'Docker'],
-    links: [{ label: 'Write-up', href: '#' }],
-    accent: 'linear-gradient(135deg,#22d3ee,#7c3aed)',
-  },
-  {
-    slug: 'realtime-app',
-    title: 'Realtime Dashboard',
-    year: '2025',
-    kind: 'fullstack',
-    summary: {
-      es: 'Placeholder — un producto full-stack: dashboard en tiempo real, WebSockets, gráficas y control de acceso.',
-      en: 'Placeholder — a full-stack product: realtime dashboard, WebSockets, charts and access control.',
-    },
-    stack: ['React', 'Node', 'WebSocket', 'PostgreSQL'],
+    stack: ['ESP32', 'Flipper Zero', 'ESP32 Marauder', 'Wi-Fi'],
     links: [
-      { label: 'Demo', href: '#' },
-      { label: 'Código', href: '#' },
+      {
+        label: 'Firmware',
+        href: 'https://github.com/justcallmekoko/ESP32Marauder',
+      },
     ],
-    accent: 'linear-gradient(135deg,#7c3aed,#ec4899)',
+    accent: 'linear-gradient(135deg,#f59e0b,#84cc16)',
   },
   {
-    slug: 'ctf-writeups',
-    title: 'CTF Write-ups',
-    year: '2024—2026',
-    kind: 'security',
+    slug: 'tls-config-auditor',
+    title: 'TLS Config Auditor',
+    year: '2025',
+    kind: 'tooling',
     summary: {
-      es: 'Placeholder — colección de resoluciones de CTF (web, pwn, crypto). Enlaza a tu repo o blog.',
-      en: 'Placeholder — a collection of CTF solutions (web, pwn, crypto). Link to your repo or blog.',
+      es: 'Herramienta en Python sobre Nmap que automatiza la detección de configuraciones TLS inseguras (protocolos y cifrados obsoletos) en hosts objetivo, con salida en consola enriquecida y flujo guiado por menú.',
+      en: 'Python tool wrapping Nmap that automates detection of insecure TLS configurations (legacy protocols and weak ciphers) on target hosts, with a rich console UI and a menu-driven flow.',
     },
-    stack: ['Web', 'Pwn', 'Crypto', 'Forensics'],
-    links: [{ label: 'Repo', href: 'https://github.com/BreaktneSs' }],
-    accent: 'linear-gradient(135deg,#06b6d4,#8b4dff)',
+    stack: ['Python', 'Nmap', 'ssl-enum-ciphers', 'rich'],
+    links: [{ label: 'Código', href: 'https://github.com/BreaktneSs' }],
+    accent: 'linear-gradient(135deg,#84cc16,#0ea5e9)',
+  },
+  {
+    slug: 'vm-anti-detection',
+    title: 'VM Anti-Detección (Tesis)',
+    year: '2024—2025',
+    kind: 'research',
+    summary: {
+      es: 'Proyecto de tesis: refuerzo del sigilo de una VM Windows 10 para un futuro sandbox de análisis dinámico de malware. Ajuste del XML de Libvirt en Virt-Manager, integración de libvirt-stealth y qemu-anti-detection, y un script PowerShell que simula actividad de usuario (teclado y ratón) para evadir detección conductual.',
+      en: 'Thesis project: hardening the stealth of a Windows 10 VM for a future dynamic malware-analysis sandbox. Libvirt XML tuning via Virt-Manager, libvirt-stealth and qemu-anti-detection integration, plus a PowerShell script that simulates user activity (keyboard and mouse) to evade behavioural detection.',
+    },
+    stack: ['QEMU / KVM', 'Libvirt', 'PowerShell', 'Windows 10'],
+    links: [],
+    accent: 'linear-gradient(135deg,#65a30d,#22d3ee)',
+  },
+  {
+    slug: 'resa-k',
+    title: 'Resa-K',
+    year: '2025',
+    kind: 'web',
+    summary: {
+      es: 'Plataforma web de reserva de eventos: búsqueda y filtrado, categorías, autenticación con Google y panel de usuario (cotizaciones, reservas, notificaciones). Diseño responsive. Capturas en la galería.',
+      en: 'Event-booking web platform: search and filtering, categories, Google auth and a user dashboard (quotes, bookings, notifications). Responsive design. Screenshots in the gallery.',
+    },
+    stack: ['React', 'Tailwind', 'OAuth', 'REST'],
+    links: [{ label: 'Galería', href: '#gallery' }],
+    accent: 'linear-gradient(135deg,#22d3ee,#84cc16)',
   },
 ]
 
@@ -108,39 +139,74 @@ export interface SkillGroup {
 
 export const skillGroups: SkillGroup[] = [
   {
-    label: { es: 'Frontend', en: 'Frontend' },
+    label: { es: 'Red Team & Ofensiva', en: 'Red Team & Offensive' },
     items: [
-      'React 19',
-      'TypeScript',
-      'Vite',
-      'Tailwind CSS',
-      'Motion / Framer',
-      'React Three Fiber',
-      'WebGL / GLSL',
-      'Accesibilidad (a11y)',
-    ],
-  },
-  {
-    label: { es: 'Plataforma', en: 'Platform' },
-    items: [
-      'Node.js',
-      'REST / WebSocket',
-      'PostgreSQL',
-      'Docker',
-      'CI/CD',
-      'Vitest / Playwright',
-    ],
-  },
-  {
-    label: { es: 'Seguridad', en: 'Security' },
-    items: [
-      'Pentesting web',
-      'OWASP Top 10',
+      'Nmap',
+      'Metasploit',
       'Burp Suite',
-      'Nmap / recon',
-      'Linux hardening',
-      'CTF (web / pwn)',
+      'OWASP ZAP',
+      'Social engineering',
+      'Wi-Fi (deauth · evil portal)',
+      'Flipper Zero',
+      'ESP32 Marauder',
     ],
+  },
+  {
+    label: {
+      es: 'Análisis de vulnerabilidades',
+      en: 'Vulnerability analysis',
+    },
+    items: [
+      'Nessus',
+      'OpenVAS',
+      'TLS / SSL auditing',
+      'OWASP Top 10',
+      'Hardening',
+      'Remediation & reporting',
+    ],
+  },
+  {
+    label: { es: 'Automatización & Labs', en: 'Automation & Labs' },
+    items: [
+      'Python',
+      'PowerShell',
+      'Bash',
+      'QEMU / KVM',
+      'Libvirt / Virt-Manager',
+      'Docker',
+      'Apache JMeter',
+    ],
+  },
+]
+
+/* ── Áreas de especialización ───────────────────────────────── */
+
+export interface FocusArea {
+  title: Record<Locale, string>
+  body: Record<Locale, string>
+}
+
+export const focusAreas: FocusArea[] = [
+  {
+    title: { es: 'Simulación Red Team', en: 'Red Team simulation' },
+    body: {
+      es: 'Simulación de ataques reales, estilo Red Team, sobre sector público e instituciones financieras.',
+      en: 'Simulation of real-world attacks, Red Team style, on public-sector and financial institutions.',
+    },
+  },
+  {
+    title: { es: 'Análisis de vulnerabilidades', en: 'Vulnerability analysis' },
+    body: {
+      es: 'Análisis de vulnerabilidades y acompañamiento a clientes para implementar estrategias de remediación efectivas.',
+      en: 'Vulnerability analysis and close work with clients to implement effective remediation strategies.',
+    },
+  },
+  {
+    title: { es: 'Ingeniería social', en: 'Social engineering' },
+    body: {
+      es: 'Pruebas de ingeniería social, físicas y de phishing, en organizaciones públicas.',
+      en: 'Social-engineering tests, both physical and phishing-based, in public organisations.',
+    },
   },
 ]
 
@@ -149,7 +215,7 @@ export const skillGroups: SkillGroup[] = [
  * Suelta tus imágenes (png / jpg / webp / avif / svg) en
  *   src/assets/gallery/
  * y añade una entrada aquí con el mismo nombre de archivo en `file`.
- * El mosaico es masonry: cada imagen mantiene su proporción real.
+ * El mosaico es un grid 4:3; el visor muestra la imagen completa.
  * `href` (opcional) añade un enlace externo en el visor.
  */
 
@@ -210,13 +276,14 @@ export const ui: Record<
     about: {
       heading: string
       body: string[]
+      focusHeading: string
       stats: { value: string; label: string }[]
     }
     work: {
       heading: string
       lead: string
       all: string
-      filters: Record<Project['kind'] | 'all', string>
+      filters: Record<ProjectKind | 'all', string>
     }
     gallery: {
       heading: string
@@ -247,9 +314,9 @@ export const ui: Record<
       contact: 'Contacto',
     },
     hero: {
-      kicker: 'Security & Frontend Engineer',
-      title: ['Construyo interfaces', 'que además', 'resisten ataques.'],
-      lead: 'Ingeniería frontend de alto nivel y seguridad ofensiva. Diseño experiencias web rápidas y pulidas, y sé exactamente cómo romperlas.',
+      kicker: 'Ethical Hacker · Consultor de Ciberseguridad',
+      title: ['Encuentro el fallo', 'antes de que', 'lo haga otro.'],
+      lead: 'Consultor de ciberseguridad especializado en Red Team, análisis de vulnerabilidades e ingeniería social para el sector público y financiero.',
       ctaWork: 'Ver proyectos',
       ctaContact: 'Hablemos',
       scroll: 'Desplázate',
@@ -257,24 +324,26 @@ export const ui: Record<
     about: {
       heading: 'Perfil',
       body: [
-        'Soy BreaktneSs. Combino dos disciplinas que rara vez van juntas: el detalle obsesivo del frontend moderno y la mentalidad adversaria del pentesting.',
-        'En el día a día trabajo con React, TypeScript y WebGL para crear productos que se sienten bien; en el otro lado, audito aplicaciones, resuelvo CTFs y pienso en cada input como un vector.',
+        'Soy Brayan Roa, ethical hacker y consultor de ciberseguridad con 2 años de experiencia. Actualmente curso la certificación CEH (EC-Council).',
+        'Me muevo con Nmap, Metasploit, OpenVAS, Burp Suite, Nessus y OWASP ZAP, entre otras. He trabajado sobre todo con instituciones del sector público y financiero: simulacros Red Team, análisis de vulnerabilidades y campañas de ingeniería social — físicas y de phishing.',
       ],
+      focusHeading: 'En qué me especializo',
       stats: [
-        { value: '5+', label: 'años programando' },
-        { value: '40+', label: 'retos CTF resueltos' },
-        { value: '∞', label: 'curiosidad' },
+        { value: '2+', label: 'años en seguridad ofensiva' },
+        { value: 'CEH', label: 'en progreso · EC-Council' },
+        { value: '6', label: 'proyectos destacados' },
       ],
     },
     work: {
       heading: 'Proyectos',
-      lead: 'Una selección de trabajo en frontend, full-stack y seguridad.',
+      lead: 'Una selección de trabajo en Red Team, herramientas, investigación y web.',
       all: 'Todos',
       filters: {
         all: 'Todos',
-        frontend: 'Frontend',
-        fullstack: 'Full-stack',
-        security: 'Seguridad',
+        offensive: 'Red Team',
+        tooling: 'Herramientas',
+        research: 'Investigación',
+        web: 'Web',
       },
     },
     gallery: {
@@ -291,7 +360,7 @@ export const ui: Record<
     },
     contact: {
       heading: 'Trabajemos juntos',
-      lead: '¿Un producto que construir o una app que auditar? Escríbeme.',
+      lead: '¿Necesitas un Red Team, una auditoría o una prueba de ingeniería social? Escríbeme.',
       cta: 'Enviar correo',
       availability: 'Disponible para proyectos',
     },
@@ -311,9 +380,9 @@ export const ui: Record<
       contact: 'Contact',
     },
     hero: {
-      kicker: 'Security & Frontend Engineer',
-      title: ['I build interfaces', 'that also', 'survive attacks.'],
-      lead: 'High-end frontend engineering and offensive security. I craft fast, polished web experiences — and I know exactly how to break them.',
+      kicker: 'Ethical Hacker · Cybersecurity Consultant',
+      title: ['I find the flaw', 'before someone', 'else does.'],
+      lead: 'Cybersecurity consultant focused on red teaming, vulnerability analysis and social engineering for public-sector and financial institutions.',
       ctaWork: 'View work',
       ctaContact: "Let's talk",
       scroll: 'Scroll',
@@ -321,24 +390,26 @@ export const ui: Record<
     about: {
       heading: 'About',
       body: [
-        "I'm BreaktneSs. I bring together two disciplines that rarely meet: the obsessive detail of modern frontend and the adversarial mindset of pentesting.",
-        'Day to day I work with React, TypeScript and WebGL to ship products that feel right; on the other side, I audit applications, solve CTFs and treat every input as a vector.',
+        "I'm Brayan Roa, an ethical hacker and cybersecurity consultant with 2 years of experience. I'm currently pursuing the CEH certification (EC-Council).",
+        'I work with Nmap, Metasploit, OpenVAS, Burp Suite, Nessus and OWASP ZAP, among others. Most of my work has been with public-sector and financial institutions: Red Team exercises, vulnerability analysis and social-engineering campaigns — both physical and phishing-based.',
       ],
+      focusHeading: 'What I focus on',
       stats: [
-        { value: '5+', label: 'years coding' },
-        { value: '40+', label: 'CTF challenges solved' },
-        { value: '∞', label: 'curiosity' },
+        { value: '2+', label: 'years in offensive security' },
+        { value: 'CEH', label: 'in progress · EC-Council' },
+        { value: '6', label: 'featured projects' },
       ],
     },
     work: {
       heading: 'Work',
-      lead: 'A selection of frontend, full-stack and security projects.',
+      lead: 'A selection of Red Team, tooling, research and web projects.',
       all: 'All',
       filters: {
         all: 'All',
-        frontend: 'Frontend',
-        fullstack: 'Full-stack',
-        security: 'Security',
+        offensive: 'Red Team',
+        tooling: 'Tooling',
+        research: 'Research',
+        web: 'Web',
       },
     },
     gallery: {
@@ -355,9 +426,9 @@ export const ui: Record<
     },
     contact: {
       heading: "Let's work together",
-      lead: 'A product to build or an app to audit? Drop me a line.',
+      lead: 'Need a red team, an audit or a social-engineering test? Drop me a line.',
       cta: 'Send email',
-      availability: 'Available for projects',
+      availability: 'Available for engagements',
     },
     footer: {
       built: 'Built with React, Tailwind and Motion',

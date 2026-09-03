@@ -1,6 +1,7 @@
 # broaportfolio
 
-Portfolio personal de **BreaktneSs** — ingeniería frontend y seguridad ofensiva.
+Portfolio personal de **Brayan Roa** — ethical hacker y consultor de
+ciberseguridad (Red Team, análisis de vulnerabilidades, ingeniería social).
 
 🔗 **https://breaktnes.github.io/broaportfolio/**
 

@@ -19,8 +19,8 @@ function Blob() {
       <mesh ref={mesh} scale={1.75} position={[1.6, -0.2, 0]}>
         <icosahedronGeometry args={[1, 14]} />
         <MeshDistortMaterial
-          color={theme === 'dark' ? '#7c3aed' : '#8b4dff'}
-          emissive={theme === 'dark' ? '#22d3ee' : '#7c3aed'}
+          color={theme === 'dark' ? '#4d7c0f' : '#84cc16'}
+          emissive={theme === 'dark' ? '#22d3ee' : '#65a30d'}
           emissiveIntensity={theme === 'dark' ? 0.3 : 0.15}
           roughness={0.08}
           metalness={0.85}
@@ -53,7 +53,7 @@ export default function Background3D() {
           size={2}
           speed={0.3}
           opacity={theme === 'dark' ? 0.6 : 0.35}
-          color={theme === 'dark' ? '#c9abff' : '#7c3aed'}
+          color={theme === 'dark' ? '#c8ee85' : '#65a30d'}
         />
       </Suspense>
     </Canvas>
