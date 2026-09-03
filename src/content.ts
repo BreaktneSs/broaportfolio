@@ -20,11 +20,31 @@ export const profile = {
     en: 'Ethical Hacker & Full-Stack Developer',
   },
   email: 'broaprieto09@gmail.com',
-  location: { es: 'Colombia · remoto', en: 'Colombia · remote' },
+  location: { es: 'Colombia', en: 'Colombia' },
+  /** ISO 8601 — la edad de la tarjeta de perfil se calcula a partir de esto */
+  birthDate: '2001-04-05',
+  education: {
+    degree: {
+      es: 'Ingeniería de Sistemas y Computación',
+      en: 'Systems and Computer Engineering',
+    },
+    school: 'Universidad Católica de Colombia',
+    year: '2026',
+  },
+  interests: [
+    { es: 'Puzzles y cubos de Rubik', en: 'Puzzles & Rubik’s cubes' },
+    {
+      es: 'Videojuegos con mucho lore (Souls-like y similares)',
+      en: 'Lore-rich video games (Souls-likes and the like)',
+    },
+  ],
   socials: [
     { label: 'GitHub', href: 'https://github.com/BreaktneSs' },
+    {
+      label: 'LinkedIn',
+      href: 'https://www.linkedin.com/in/brayan-stiff-roa-prieto-882055255/',
+    },
     { label: 'Email', href: 'mailto:broaprieto09@gmail.com' },
-    // { label: 'LinkedIn', href: 'https://linkedin.com/in/…' },
   ],
 } as const
 
@@ -542,6 +562,14 @@ export const ui: Record<
     footer: { built: string; rights: string }
     theme: { toLight: string; toDark: string }
     lang: { switchTo: string }
+    profileCard: {
+      age: string
+      birthday: string
+      graduated: string
+      education: string
+      interests: string
+      contact: string
+    }
   }
 > = {
   es: {
@@ -621,6 +649,14 @@ export const ui: Record<
     },
     theme: { toLight: 'Cambiar a tema claro', toDark: 'Cambiar a tema oscuro' },
     lang: { switchTo: 'Switch to English' },
+    profileCard: {
+      age: 'años',
+      birthday: 'Nacimiento',
+      graduated: 'Graduación',
+      education: 'Educación',
+      interests: 'Intereses',
+      contact: 'Contacto',
+    },
   },
   en: {
     nav: {
@@ -699,5 +735,13 @@ export const ui: Record<
     },
     theme: { toLight: 'Switch to light theme', toDark: 'Switch to dark theme' },
     lang: { switchTo: 'Cambiar a español' },
+    profileCard: {
+      age: 'years old',
+      birthday: 'Born',
+      graduated: 'Graduated',
+      education: 'Education',
+      interests: 'Interests',
+      contact: 'Contact',
+    },
   },
 }

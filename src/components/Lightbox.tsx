@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useI18n } from '../providers/i18n'
+import { useScrollLock } from '../hooks/useScrollLock'
 
 export interface Slide {
   url: string
@@ -34,6 +35,8 @@ export function Lightbox({
     [index, slides.length, onNavigate],
   )
 
+  useScrollLock(open)
+
   useEffect(() => {
     if (!open) return
     const onKey = (e: KeyboardEvent) => {
@@ -42,12 +45,7 @@ export function Lightbox({
       if (e.key === 'ArrowLeft') go(-1)
     }
     document.addEventListener('keydown', onKey)
-    const prevOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.removeEventListener('keydown', onKey)
-      document.body.style.overflow = prevOverflow
-    }
+    return () => document.removeEventListener('keydown', onKey)
   }, [open, go, onClose])
 
   return (

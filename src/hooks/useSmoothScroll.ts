@@ -1,6 +1,19 @@
 import { useEffect } from 'react'
 import Lenis from 'lenis'
 
+// Instancia única del scroll suave. Se expone así (en vez de contexto) para
+// que cualquier overlay (modales, explorador de proyectos...) pueda
+// pausarla mientras está abierto — ver useScrollLock.
+let lenisInstance: Lenis | null = null
+
+export function pauseSmoothScroll() {
+  lenisInstance?.stop()
+}
+
+export function resumeSmoothScroll() {
+  lenisInstance?.start()
+}
+
 /**
  * Scroll suave global con Lenis. Se desactiva si el usuario pide
  * "prefers-reduced-motion". Devuelve nada: es un efecto de montaje.
@@ -16,6 +29,7 @@ export function useSmoothScroll() {
       wheelMultiplier: 1,
       touchMultiplier: 1.5,
     })
+    lenisInstance = lenis
 
     let frame = 0
     const raf = (time: number) => {
@@ -43,6 +57,7 @@ export function useSmoothScroll() {
       cancelAnimationFrame(frame)
       document.removeEventListener('click', onClick)
       lenis.destroy()
+      lenisInstance = null
     }
   }, [])
 }

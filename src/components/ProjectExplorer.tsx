@@ -3,6 +3,7 @@ import { AnimatePresence, motion, type Variants } from 'motion/react'
 import { useI18n } from '../providers/i18n'
 import { gallery, type Project } from '../content'
 import { resolveGalleryUrl } from '../lib/galleryAssets'
+import { useScrollLock } from '../hooks/useScrollLock'
 import { Lightbox, type Slide } from './Lightbox'
 
 type Folder = 'description' | 'stack' | 'gallery' | 'references'
@@ -90,6 +91,8 @@ export function ProjectExplorer({ project, onClose }: ProjectExplorerProps) {
     setActiveFolder(null)
   }
 
+  useScrollLock(open)
+
   useEffect(() => {
     if (!open) return
     const onKey = (e: KeyboardEvent) => {
@@ -99,12 +102,7 @@ export function ProjectExplorer({ project, onClose }: ProjectExplorerProps) {
       else onClose()
     }
     document.addEventListener('keydown', onKey)
-    const prevOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.removeEventListener('keydown', onKey)
-      document.body.style.overflow = prevOverflow
-    }
+    return () => document.removeEventListener('keydown', onKey)
   }, [open, onClose, lightboxIndex, activeFolder])
 
   const folders = useMemo<Folder[]>(
