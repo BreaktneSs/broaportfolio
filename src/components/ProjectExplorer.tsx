@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion, type Variants } from 'motion/react'
 import { useI18n } from '../providers/i18n'
-import { gallery, type Project } from '../content'
+import { gallery, type Project, type ProjectCodeFile } from '../content'
 import { resolveGalleryUrl } from '../lib/galleryAssets'
 import { useScrollLock } from '../hooks/useScrollLock'
 import { Lightbox, type Slide } from './Lightbox'
+import { CodeBlock } from './CodeBlock'
 
-type Folder = 'description' | 'stack' | 'gallery' | 'references'
-const BASE_FOLDERS: Folder[] = ['description', 'stack', 'gallery']
+type Folder = 'description' | 'stack' | 'code' | 'gallery' | 'references'
 
 function FolderIcon({ className }: { className?: string }) {
   return (
@@ -58,6 +58,16 @@ function LinkIcon({ className }: { className?: string }) {
   )
 }
 
+function downloadCodeFile(file: ProjectCodeFile) {
+  const blob = new Blob([file.code], { type: 'text/plain;charset=utf-8' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = file.filename.split('/').pop() ?? file.filename
+  a.click()
+  URL.revokeObjectURL(url)
+}
+
 const slide: Variants = {
   enter: (dir: 1 | -1) => ({ x: dir > 0 ? 36 : -36, opacity: 0 }),
   center: { x: 0, opacity: 1 },
@@ -75,11 +85,15 @@ export function ProjectExplorer({ project, onClose }: ProjectExplorerProps) {
   const [activeFolder, setActiveFolder] = useState<Folder | null>(null)
   const [direction, setDirection] = useState<1 | -1>(1)
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+  const [codeFileIndex, setCodeFileIndex] = useState(0)
   const open = project !== null
 
   // vuelve a la vista de carpetas cada vez que se abre un proyecto nuevo
   useEffect(() => {
-    if (project) setActiveFolder(null)
+    if (project) {
+      setActiveFolder(null)
+      setCodeFileIndex(0)
+    }
   }, [project])
 
   const openFolder = (f: Folder) => {
@@ -105,13 +119,14 @@ export function ProjectExplorer({ project, onClose }: ProjectExplorerProps) {
     return () => document.removeEventListener('keydown', onKey)
   }, [open, onClose, lightboxIndex, activeFolder])
 
-  const folders = useMemo<Folder[]>(
-    () =>
-      project && project.links.length > 0
-        ? [...BASE_FOLDERS, 'references']
-        : BASE_FOLDERS,
-    [project],
-  )
+  const folders = useMemo<Folder[]>(() => {
+    if (!project) return ['description', 'stack', 'gallery']
+    const list: Folder[] = ['description', 'stack']
+    if (project.codeFiles && project.codeFiles.length > 0) list.push('code')
+    list.push('gallery')
+    if (project.links.length > 0) list.push('references')
+    return list
+  }, [project])
 
   const shots = useMemo(
     () =>
@@ -205,7 +220,9 @@ export function ProjectExplorer({ project, onClose }: ProjectExplorerProps) {
                           ? shots.length
                           : f === 'references'
                             ? project.links.length
-                            : 0
+                            : f === 'code'
+                              ? (project.codeFiles?.length ?? 0)
+                              : 0
                       return (
                         <button
                           key={f}
@@ -284,6 +301,60 @@ export function ProjectExplorer({ project, onClose }: ProjectExplorerProps) {
                             </span>
                           </div>
                         ))}
+                      </div>
+                    )}
+
+                    {activeFolder === 'code' && project.codeFiles && (
+                      <div>
+                        <div className="mb-3 flex flex-wrap gap-1.5">
+                          {project.codeFiles.map((file, i) => (
+                            <button
+                              key={file.filename}
+                              type="button"
+                              onClick={() => setCodeFileIndex(i)}
+                              className={`rounded-lg px-2.5 py-1 font-mono text-[11px] transition-colors ${
+                                i === codeFileIndex
+                                  ? 'bg-[rgb(var(--glow-a)/0.14)] text-[rgb(var(--text-strong))]'
+                                  : 'text-[rgb(var(--text-faint))] hover:text-[rgb(var(--text-body))]'
+                              }`}
+                            >
+                              {file.filename}
+                            </button>
+                          ))}
+                        </div>
+                        <div className="rounded-xl border border-[rgb(var(--hairline)/0.14)] bg-[rgb(var(--glow-a)/0.03)] p-4">
+                          <div className="overflow-x-auto">
+                            <CodeBlock
+                              code={project.codeFiles[codeFileIndex].code}
+                              language={
+                                project.codeFiles[codeFileIndex].language
+                              }
+                            />
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            project.codeFiles &&
+                            downloadCodeFile(project.codeFiles[codeFileIndex])
+                          }
+                          className="group/link mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-[rgb(var(--text-strong))] hover:text-[rgb(var(--glow-a))]"
+                        >
+                          <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="transition-transform group-hover/link:translate-y-0.5"
+                          >
+                            <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16" />
+                          </svg>
+                          {t.explorer.download}
+                        </button>
                       </div>
                     )}
 

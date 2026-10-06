@@ -210,4 +210,42 @@
       transform: translate3d(0, 0, 0) rotate(360deg);
     }
   }
+
+  /* Resaltado de código (Prism), paleta propia en vez del tema por defecto */
+  .code-block {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    line-height: 1.6;
+    white-space: pre;
+    color: rgb(var(--text-body));
+  }
+  .code-block .token.comment {
+    color: rgb(var(--text-faint));
+    font-style: italic;
+  }
+  .code-block .token.string,
+  .code-block .token.triple-quoted-string {
+    color: rgb(var(--glow-b));
+  }
+  .code-block .token.keyword,
+  .code-block .token.control-flow {
+    color: rgb(var(--glow-a));
+    font-weight: 600;
+  }
+  .code-block .token.function,
+  .code-block .token.builtin {
+    color: rgb(var(--glow-b));
+  }
+  .code-block .token.number,
+  .code-block .token.boolean {
+    color: #f59e0b;
+  }
+  .code-block .token.operator,
+  .code-block .token.punctuation {
+    color: rgb(var(--text-faint));
+  }
+  .code-block .token.decorator,
+  .code-block .token.class-name {
+    color: #ec4899;
+  }
 }

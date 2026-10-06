@@ -6,6 +6,10 @@
  *  inglés (en). Cambia los valores y el sitio se actualiza.
  */
 
+import tlsAuditorMain from './assets/code/tls-config-auditor/main.py?raw'
+import tlsAuditorValidator from './assets/code/tls-config-auditor/tls_validator.py?raw'
+import tlsAuditorBanner from './assets/code/tls-config-auditor/banner.py?raw'
+
 export type Locale = 'es' | 'en'
 export const LOCALES: Locale[] = ['es', 'en']
 export const DEFAULT_LOCALE: Locale = 'es'
@@ -144,6 +148,12 @@ export const certifications: Certification[] = [
 
 export type ProjectKind = 'offensive' | 'devsecops' | 'dev' | 'research'
 
+export interface ProjectCodeFile {
+  filename: string
+  language: string
+  code: string
+}
+
 export interface Project {
   slug: string
   title: string
@@ -156,30 +166,32 @@ export interface Project {
   accent: string
   /** abre el explorador de archivos (descripción / stack / galería) en vez de solo enlaces */
   explorer?: boolean
+  /** código fuente real, mostrado como vista previa + descarga en la carpeta "Código" */
+  codeFiles?: ProjectCodeFile[]
 }
 
 export const projects: Project[] = [
   {
-    slug: 'insecure-backend-devsecops',
-    title: 'Backend Inseguro · DevSecOps',
+    slug: 'secure-e-commerce',
+    title: 'Secure Commerce Lab · DevSecOps',
     year: '2025',
     kind: 'devsecops',
     summary: {
-      es: 'API backend deliberadamente vulnerable como banco de pruebas para montar pipelines de seguridad en CI/CD (SAST con Semgrep, DAST con OWASP ZAP y análisis de dependencias) y documentar el ciclo completo de detección y remediación, con un antes/después real por cada hallazgo corregido.',
-      en: 'A deliberately vulnerable backend API used as a testbed to build security pipelines in CI/CD (SAST with Semgrep, DAST with OWASP ZAP and dependency scanning) and document the full detect-and-remediate loop, with a real before/after for each fixed finding.',
+      es: 'E-commerce API con FastAPI, PostgreSQL y SQLAlchemy, pensada como base de un proyecto de Application Security / DevSecOps: arquitectura en capas (API → Services → Repositories → Models), auth con JWT y bcrypt, migraciones con Alembic y despliegue con Docker Compose. Fase actual: aplicación funcional y sin vulnerabilidades intencionales — las siguientes fases introducen vulnerabilidades controladas (OWASP Top 10 / API Security Top 10) y un pipeline de seguridad en CI/CD (SAST, SCA, secret detection, DAST).',
+      en: 'E-commerce API built with FastAPI, PostgreSQL and SQLAlchemy, built as the foundation for an Application Security / DevSecOps project: layered architecture (API → Services → Repositories → Models), JWT + bcrypt auth, Alembic migrations and Docker Compose deployment. Current phase: a clean, fully working application with no intentional vulnerabilities yet — upcoming phases introduce controlled vulnerabilities (OWASP Top 10 / API Security Top 10) and a CI/CD security pipeline (SAST, SCA, secret detection, DAST).',
     },
     stack: [
-      'GitHub Actions',
-      'Semgrep',
-      'OWASP ZAP',
-      'Node.js',
-      'Docker',
-      'SAST / DAST',
+      'FastAPI',
+      'PostgreSQL',
+      'SQLAlchemy',
+      'Alembic',
+      'JWT',
+      'Docker Compose',
     ],
     links: [
       {
         label: 'Código',
-        href: 'https://github.com/BreaktneSs/insecure-backend-devsecops',
+        href: 'https://github.com/BreaktneSs/secure-e-commerce',
       },
     ],
     accent: 'linear-gradient(135deg,#84cc16,#0ea5e9)',
@@ -195,14 +207,22 @@ export const projects: Project[] = [
       en: 'Python tool wrapping Nmap that automates detection of insecure TLS configurations (legacy protocols and weak ciphers) on target hosts, with a rich console UI and a menu-driven flow. Built to slot into a pipeline.',
     },
     stack: ['Python', 'Nmap', 'ssl-enum-ciphers', 'rich'],
-    links: [
-      {
-        label: 'Código',
-        href: 'https://github.com/BreaktneSs/tls-config-auditor',
-      },
-    ],
+    links: [],
     accent: 'linear-gradient(135deg,#84cc16,#0ea5e9)',
     explorer: true,
+    codeFiles: [
+      { filename: 'main.py', language: 'python', code: tlsAuditorMain },
+      {
+        filename: 'modules/tls_validator.py',
+        language: 'python',
+        code: tlsAuditorValidator,
+      },
+      {
+        filename: 'modules/banner.py',
+        language: 'python',
+        code: tlsAuditorBanner,
+      },
+    ],
   },
   {
     slug: 'vm-anti-detection',
@@ -608,9 +628,11 @@ export const ui: Record<
     explorer: {
       cta: string
       back: string
+      download: string
       folders: {
         description: string
         stack: string
+        code: string
         gallery: string
         references: string
       }
@@ -694,9 +716,11 @@ export const ui: Record<
     explorer: {
       cta: 'Explorar',
       back: 'Atrás',
+      download: 'Descargar',
       folders: {
         description: 'Descripción',
         stack: 'Stack y tecnologías',
+        code: 'Código',
         gallery: 'Galería',
         references: 'Referencias',
       },
@@ -785,9 +809,11 @@ export const ui: Record<
     explorer: {
       cta: 'Explore',
       back: 'Back',
+      download: 'Download',
       folders: {
         description: 'Description',
         stack: 'Stack & tech',
+        code: 'Code',
         gallery: 'Gallery',
         references: 'References',
       },
