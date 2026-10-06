@@ -168,7 +168,9 @@ export function ProjectExplorer({ project, onClose }: ProjectExplorerProps) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.97 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="glass-strong flex max-h-[85vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl shadow-2xl"
+            className={`glass-strong flex max-h-[85vh] w-full flex-col overflow-hidden rounded-2xl shadow-2xl transition-[max-width] duration-300 ${
+              activeFolder === 'code' ? 'max-w-4xl' : 'max-w-3xl'
+            }`}
             onClick={(e) => e.stopPropagation()}
           >
             {/* barra de título estilo Finder — el semáforo es funcional */}
@@ -322,16 +324,10 @@ export function ProjectExplorer({ project, onClose }: ProjectExplorerProps) {
                             </button>
                           ))}
                         </div>
-                        <div className="rounded-xl border border-[rgb(var(--hairline)/0.14)] bg-[rgb(var(--glow-a)/0.03)] p-4">
-                          <div className="overflow-x-auto">
-                            <CodeBlock
-                              code={project.codeFiles[codeFileIndex].code}
-                              language={
-                                project.codeFiles[codeFileIndex].language
-                              }
-                            />
-                          </div>
-                        </div>
+                        <CodeBlock
+                          code={project.codeFiles[codeFileIndex].code}
+                          language={project.codeFiles[codeFileIndex].language}
+                        />
                         <button
                           type="button"
                           onClick={() =>

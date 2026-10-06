@@ -123,6 +123,7 @@
   /* Scrollbar */
   ::-webkit-scrollbar {
     width: 10px;
+    height: 10px;
   }
   ::-webkit-scrollbar-track {
     background: transparent;
@@ -209,6 +210,33 @@
     100% {
       transform: translate3d(0, 0, 0) rotate(360deg);
     }
+  }
+
+  /* Panel de código: scroll propio y acotado, con barras siempre visibles
+     (no basta con el estilo global — aquí el usuario necesita ver de
+     entrada que hay más código a los lados y abajo). */
+  .code-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--glow-a) / 0.55) transparent;
+  }
+  .code-scroll::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .code-scroll::-webkit-scrollbar-track {
+    background: rgb(var(--hairline) / 0.06);
+    border-radius: 999px;
+  }
+  .code-scroll::-webkit-scrollbar-thumb {
+    background: rgb(var(--glow-a) / 0.55);
+    border-radius: 999px;
+    border: none;
+  }
+  .code-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--glow-a) / 0.8);
+  }
+  .code-scroll::-webkit-scrollbar-corner {
+    background: transparent;
   }
 
   /* Resaltado de código (Prism), paleta propia en vez del tema por defecto */
