@@ -39,6 +39,7 @@ export function ProfileCard({ open, onClose }: ProfileCardProps) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.97 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            data-lenis-prevent
             className="glass-strong relative max-h-[85vh] w-full max-w-md overflow-y-auto rounded-3xl p-6 shadow-2xl sm:p-8"
             onClick={(e) => e.stopPropagation()}
           >

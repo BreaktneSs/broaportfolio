@@ -203,7 +203,10 @@ export function ProjectExplorer({ project, onClose }: ProjectExplorerProps) {
               </span>
             </div>
 
-            <div className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto">
+            <div
+              data-lenis-prevent
+              className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto"
+            >
               <AnimatePresence mode="wait" custom={direction} initial={false}>
                 {activeFolder === null ? (
                   <motion.div
