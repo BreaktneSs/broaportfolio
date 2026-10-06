@@ -87,6 +87,9 @@ export function Hero() {
           <MagneticButton href="#contact" variant="ghost">
             {t.hero.ctaContact}
           </MagneticButton>
+          <MagneticButton href={profile.cvHref} variant="ghost" download>
+            {t.hero.ctaCV}
+          </MagneticButton>
         </motion.div>
 
         <motion.div

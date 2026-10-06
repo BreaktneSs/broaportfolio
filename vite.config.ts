@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-// El sitio se sirve desde https://breaktnes.github.io/broaportfolio/
+// El sitio se sirve desde https://breaktness.github.io/broaportfolio/
 // En dev usamos "/" para que el server local funcione con normalidad.
 const base = process.env.NODE_ENV === 'production' ? '/broaportfolio/' : '/'
 

@@ -6,7 +6,14 @@ import { profile } from '../content'
 import { LangToggle, ThemeToggle } from './Toggles'
 import { ProfileCard } from './ProfileCard'
 
-const SECTIONS = ['about', 'experience', 'work', 'skills', 'contact'] as const
+const SECTIONS = [
+  'about',
+  'experience',
+  'certifications',
+  'work',
+  'skills',
+  'contact',
+] as const
 
 export function Navbar() {
   const { t } = useI18n()

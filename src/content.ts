@@ -19,10 +19,8 @@ export const profile = {
     es: 'Ethical Hacker & Desarrollador Full-Stack',
     en: 'Ethical Hacker & Full-Stack Developer',
   },
-  email: 'broaprieto09@gmail.com',
+  email: 'brayan.stiff4@gmail.com',
   location: { es: 'Colombia', en: 'Colombia' },
-  /** ISO 8601 — la edad de la tarjeta de perfil se calcula a partir de esto */
-  birthDate: '2001-04-05',
   education: {
     degree: {
       es: 'Ingeniería de Sistemas y Computación',
@@ -44,8 +42,10 @@ export const profile = {
       label: 'LinkedIn',
       href: 'https://www.linkedin.com/in/brayan-stiff-roa-prieto-882055255/',
     },
-    { label: 'Email', href: 'mailto:broaprieto09@gmail.com' },
+    { label: 'Email', href: 'mailto:brayan.stiff4@gmail.com' },
   ],
+  /** colócalo en public/ con este mismo nombre para que el botón funcione */
+  cvHref: './cv-brayan-roa.pdf',
 } as const
 
 /* ── Experiencia profesional ────────────────────────────────── */
@@ -61,21 +61,20 @@ export interface ExperienceEntry {
 
 export const experience: ExperienceEntry[] = [
   {
-    role: {
-      es: 'Analista de Seguridad · Revisión de código',
-      en: 'Security Analyst · Code Review',
-    },
+    role: { es: 'Security Tester', en: 'Security Tester' },
     company: 'Fluid Attacks',
     companyUrl: 'https://fluidattacks.com',
-    period: { es: 'Actual', en: 'Current' },
+    period: { es: 'Oct 2025 — Presente', en: 'Oct 2025 — Present' },
     summary: {
-      es: 'Revisión manual de código fuente para encontrar vulnerabilidades en aplicaciones de clientes de múltiples sectores en Colombia. Catalogo y priorizo cada hallazgo bajo el estándar CVSS v4.0 y acompaño su remediación junto a los equipos de desarrollo.',
-      en: 'Manual source-code review to find vulnerabilities in applications for clients across multiple sectors in Colombia. I catalogue and prioritise every finding under the CVSS v4.0 standard and support remediation alongside development teams.',
+      es: 'Revisión manual de código (SAST) y pruebas dinámicas (DAST/PTaaS) para encontrar vulnerabilidades en aplicaciones de clientes de múltiples sectores en Colombia. Catalogo y priorizo cada hallazgo bajo el estándar CVSS v4.0, apoyándome en revisión asistida por IA (Claude, Codex) para acelerar el análisis, y acompaño la remediación junto a los equipos de desarrollo.',
+      en: 'Manual code review (SAST) and dynamic testing (DAST/PTaaS) to find vulnerabilities in client applications across multiple sectors in Colombia. I catalogue and prioritise every finding under the CVSS v4.0 standard, use AI-assisted review (Claude, Codex) to speed up analysis, and support remediation alongside development teams.',
     },
     tags: [
       'Code Review',
-      'SAST manual',
+      'SAST',
+      'DAST / PTaaS',
       'CVSS v4.0',
+      'AI-assisted review',
       'Vulnerability Management',
     ],
   },
@@ -84,8 +83,9 @@ export const experience: ExperienceEntry[] = [
       es: 'Consultor de Ciberseguridad Junior',
       en: 'Junior Cybersecurity Consultant',
     },
+    // Verifica que coincide exactamente con el nombre de la empresa en LinkedIn.
     company: 'Cross Border Technology',
-    period: { es: '2024 — 2025', en: '2024 — 2025' },
+    period: { es: 'Jun 2024 — Jul 2025', en: 'Jun 2024 — Jul 2025' },
     summary: {
       es: 'Pruebas de Red Team, ingeniería social y escaneo de vulnerabilidades para clientes, acompañando la remediación de los hallazgos. Investigación y desarrollo de herramientas internas, además de búsqueda de información sensible de clientes expuesta en la deep web.',
       en: 'Red Team testing, social engineering and vulnerability scanning for clients, supporting remediation of findings. R&D of internal tooling, plus searching the deep web for clients’ exposed sensitive information.',
@@ -111,6 +111,35 @@ export const experience: ExperienceEntry[] = [
   },
 ]
 
+/* ── Certificaciones ────────────────────────────────────────── */
+
+export interface Certification {
+  name: string
+  issuer: string
+  note?: Record<Locale, string>
+}
+
+export const certifications: Certification[] = [
+  { name: 'CVSS v4.0', issuer: 'FIRST' },
+  { name: 'Code Review', issuer: 'PentesterLab' },
+  {
+    name: 'CWEE',
+    issuer: 'INE Security',
+    note: {
+      es: 'Certified Web Exploitation Expert · módulos completados',
+      en: 'Certified Web Exploitation Expert · completed modules',
+    },
+  },
+  {
+    name: 'CEH',
+    issuer: 'EC-Council',
+    note: {
+      es: 'Certified Ethical Hacker · en curso',
+      en: 'Certified Ethical Hacker · in progress',
+    },
+  },
+]
+
 /* ── Proyectos destacados ───────────────────────────────────── */
 
 export type ProjectKind = 'offensive' | 'devsecops' | 'dev' | 'research'
@@ -131,82 +160,29 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: 'aukani-pos',
-    title: 'Aukani POS',
-    year: '2024',
-    kind: 'dev',
-    summary: {
-      es: 'Sistema de punto de venta full-stack: gestión de productos, ventas, inventario y reportes, con control de acceso por roles. Cliente de escritorio con Electron además de la API y el frontend, diseñados de principio a fin.',
-      en: 'Full-stack point-of-sale system: product management, sales, inventory and reports, with role-based access control. Electron desktop client alongside the API and frontend, designed end to end.',
-    },
-    stack: [
-      'React',
-      'TypeScript',
-      'Electron',
-      'REST API',
-      'PostgreSQL',
-      'RBAC',
-    ],
-    links: [],
-    accent: 'linear-gradient(135deg,#22d3ee,#84cc16)',
-    explorer: true,
-  },
-  {
     slug: 'insecure-backend-devsecops',
     title: 'Backend Inseguro · DevSecOps',
     year: '2025',
     kind: 'devsecops',
     summary: {
-      es: 'API backend deliberadamente vulnerable como banco de pruebas para montar pipelines de seguridad en CI/CD (SAST, DAST y análisis de dependencias) y practicar el ciclo completo de detección y remediación de vulnerabilidades.',
-      en: 'A deliberately vulnerable backend API used as a testbed to build security pipelines in CI/CD (SAST, DAST and dependency scanning) and practise the full detect-and-remediate vulnerability loop.',
+      es: 'API backend deliberadamente vulnerable como banco de pruebas para montar pipelines de seguridad en CI/CD (SAST con Semgrep, DAST con OWASP ZAP y análisis de dependencias) y documentar el ciclo completo de detección y remediación, con un antes/después real por cada hallazgo corregido.',
+      en: 'A deliberately vulnerable backend API used as a testbed to build security pipelines in CI/CD (SAST with Semgrep, DAST with OWASP ZAP and dependency scanning) and document the full detect-and-remediate loop, with a real before/after for each fixed finding.',
     },
-    stack: ['GitHub Actions', 'SAST / DAST', 'Semgrep', 'OWASP ZAP', 'Docker'],
-    links: [],
-    accent: 'linear-gradient(135deg,#84cc16,#0ea5e9)',
-  },
-  {
-    slug: 'red-team-public-sector',
-    title: 'Red Team · Sector Público',
-    year: '2024',
-    kind: 'offensive',
-    summary: {
-      es: 'Ejercicios Red Team para instituciones públicas: simulación de DDoS localizado con una botnet desplegada dentro de Colombia y defacement de una web interna para poner a prueba la respuesta a incidentes y la resiliencia de los sistemas.',
-      en: 'Red Team engagements for public institutions: a localised DDoS simulation using a botnet deployed within Colombia and the defacement of an internal web page to test incident response and system resilience.',
-    },
-    stack: ['Apache JMeter', 'GlassFish', 'C2', 'DDoS sim'],
-    links: [],
-    accent: 'linear-gradient(135deg,#84cc16,#22d3ee)',
-  },
-  {
-    slug: 'physical-social-engineering',
-    title: 'Ingeniería Social Física',
-    year: '2024',
-    kind: 'offensive',
-    summary: {
-      es: 'Campañas de ingeniería social en organizaciones públicas y sus sedes: piggybacking, tailgating y skimming. Cada ejercicio se cerró con formación al personal mediante métodos de shock therapy para elevar la concienciación y mejorar la seguridad física.',
-      en: 'Social-engineering campaigns across public organisations and their branches: piggybacking, tailgating and skimming. Each exercise closed with staff training using shock-therapy methods to raise awareness and improve physical security.',
-    },
-    stack: ['Piggybacking', 'Tailgating', 'Phishing', 'OSINT'],
-    links: [],
-    accent: 'linear-gradient(135deg,#22d3ee,#65a30d)',
-  },
-  {
-    slug: 'wifi-marauder',
-    title: 'Wi-Fi Marauder',
-    year: '2025',
-    kind: 'offensive',
-    summary: {
-      es: 'ESP32 con firmware personalizado (JustCallMeKoko) controlado desde un Flipper Zero para ataques Wi-Fi: packet flooding, deautenticación, captura de handshakes y despliegue de captive portal.',
-      en: 'ESP32 flashed with custom firmware (JustCallMeKoko) driven from a Flipper Zero for Wi-Fi attacks: packet flooding, deauth, handshake capture and captive-portal deployment.',
-    },
-    stack: ['ESP32', 'Flipper Zero', 'ESP32 Marauder', 'Wi-Fi'],
+    stack: [
+      'GitHub Actions',
+      'Semgrep',
+      'OWASP ZAP',
+      'Node.js',
+      'Docker',
+      'SAST / DAST',
+    ],
     links: [
       {
-        label: 'Firmware',
-        href: 'https://github.com/justcallmekoko/ESP32Marauder',
+        label: 'Código',
+        href: 'https://github.com/BreaktneSs/insecure-backend-devsecops',
       },
     ],
-    accent: 'linear-gradient(135deg,#f59e0b,#84cc16)',
+    accent: 'linear-gradient(135deg,#84cc16,#0ea5e9)',
     explorer: true,
   },
   {
@@ -219,8 +195,95 @@ export const projects: Project[] = [
       en: 'Python tool wrapping Nmap that automates detection of insecure TLS configurations (legacy protocols and weak ciphers) on target hosts, with a rich console UI and a menu-driven flow. Built to slot into a pipeline.',
     },
     stack: ['Python', 'Nmap', 'ssl-enum-ciphers', 'rich'],
-    links: [],
+    links: [
+      {
+        label: 'Código',
+        href: 'https://github.com/BreaktneSs/tls-config-auditor',
+      },
+    ],
     accent: 'linear-gradient(135deg,#84cc16,#0ea5e9)',
+    explorer: true,
+  },
+  {
+    slug: 'vm-anti-detection',
+    title: 'VM Anti-Detección (Tesis)',
+    year: '2024—2025',
+    kind: 'research',
+    summary: {
+      es: 'Proyecto de tesis: refuerzo del sigilo de una VM Windows 10 para un futuro sandbox de análisis dinámico de malware. Ajuste del XML de Libvirt en Virt-Manager, integración de libvirt-stealth y qemu-anti-detection, y un script PowerShell que simula actividad de usuario (teclado y ratón) para evadir detección conductual.',
+      en: 'Thesis project: hardening the stealth of a Windows 10 VM for a future dynamic malware-analysis sandbox. Libvirt XML tuning via Virt-Manager, libvirt-stealth and qemu-anti-detection integration, plus a PowerShell script that simulates user activity (keyboard and mouse) to evade behavioural detection.',
+    },
+    stack: ['QEMU / KVM', 'Libvirt', 'PowerShell', 'Windows 10'],
+    links: [],
+    accent: 'linear-gradient(135deg,#65a30d,#22d3ee)',
+  },
+  {
+    slug: 'red-team-public-sector',
+    title: 'Red Team · Sector Público',
+    year: '2024',
+    kind: 'offensive',
+    summary: {
+      es: 'Ejercicio Red Team autorizado y controlado para instituciones públicas: simulación de DDoS localizado con una botnet desplegada en un entorno controlado dentro de Colombia, y defacement de una web interna, para poner a prueba la respuesta a incidentes y la resiliencia de los sistemas.',
+      en: 'An authorized, controlled Red Team engagement for public institutions: a localised DDoS simulation using a botnet deployed in a controlled environment within Colombia, plus the defacement of an internal web page, to test incident response and system resilience.',
+    },
+    stack: ['Apache JMeter', 'GlassFish', 'C2', 'DDoS sim'],
+    links: [],
+    accent: 'linear-gradient(135deg,#84cc16,#22d3ee)',
+  },
+  {
+    slug: 'physical-social-engineering',
+    title: 'Ingeniería Social Física',
+    year: '2024',
+    kind: 'offensive',
+    summary: {
+      es: 'Campañas de ingeniería social autorizadas en organizaciones públicas y sus sedes: piggybacking, tailgating y skimming. Cada ejercicio se cerró con formación práctica de concienciación para el personal, orientada a mejorar la seguridad física.',
+      en: 'Authorized social-engineering campaigns across public organisations and their branches: piggybacking, tailgating and skimming. Each exercise closed with hands-on awareness training for staff, aimed at improving physical security.',
+    },
+    stack: ['Piggybacking', 'Tailgating', 'Phishing', 'OSINT'],
+    links: [],
+    accent: 'linear-gradient(135deg,#22d3ee,#65a30d)',
+  },
+  {
+    slug: 'wifi-marauder',
+    title: 'Wi-Fi Marauder',
+    year: '2025',
+    kind: 'offensive',
+    summary: {
+      es: 'ESP32 con firmware personalizado (JustCallMeKoko) controlado desde un Flipper Zero para ataques Wi-Fi en laboratorio controlado: packet flooding, deautenticación, captura de handshakes y despliegue de captive portal.',
+      en: 'ESP32 flashed with custom firmware (JustCallMeKoko) driven from a Flipper Zero for Wi-Fi attacks in a controlled lab: packet flooding, deauth, handshake capture and captive-portal deployment.',
+    },
+    stack: ['ESP32', 'Flipper Zero', 'ESP32 Marauder', 'Wi-Fi'],
+    links: [
+      {
+        label: 'Firmware',
+        href: 'https://github.com/justcallmekoko/ESP32Marauder',
+      },
+    ],
+    accent: 'linear-gradient(135deg,#f59e0b,#84cc16)',
+    explorer: true,
+  },
+  {
+    slug: 'aukani-pos',
+    title: 'Aukani POS',
+    year: '2024',
+    kind: 'dev',
+    summary: {
+      es: 'Sistema de punto de venta full-stack diseñado con seguridad desde el inicio: autenticación JWT con verificación en dos pasos (TOTP), audit log de operaciones, y acceso remoto por túnel SSH cuando el servidor no está en la red local. Desplegado con Docker Compose y Nginx como proxy inverso sobre una red de 4 VMs. Cliente de escritorio con Electron además de la API y el frontend.',
+      en: 'Full-stack point-of-sale system designed with security from day one: JWT auth with two-factor verification (TOTP), an operations audit log, and SSH-tunnel remote access when the server isn’t on the local network. Deployed with Docker Compose and Nginx as a reverse proxy across a 4-VM network. Electron desktop client alongside the API and frontend.',
+    },
+    stack: [
+      'React',
+      'TypeScript',
+      'Electron',
+      'Fastify',
+      'Prisma',
+      'PostgreSQL',
+      'Docker',
+      'Nginx',
+      'RBAC',
+    ],
+    links: [],
+    accent: 'linear-gradient(135deg,#22d3ee,#84cc16)',
     explorer: true,
   },
   {
@@ -237,19 +300,6 @@ export const projects: Project[] = [
     accent: 'linear-gradient(135deg,#22d3ee,#84cc16)',
     explorer: true,
   },
-  {
-    slug: 'vm-anti-detection',
-    title: 'VM Anti-Detección (Tesis)',
-    year: '2024—2025',
-    kind: 'research',
-    summary: {
-      es: 'Proyecto de tesis: refuerzo del sigilo de una VM Windows 10 para un futuro sandbox de análisis dinámico de malware. Ajuste del XML de Libvirt en Virt-Manager, integración de libvirt-stealth y qemu-anti-detection, y un script PowerShell que simula actividad de usuario (teclado y ratón) para evadir detección conductual.',
-      en: 'Thesis project: hardening the stealth of a Windows 10 VM for a future dynamic malware-analysis sandbox. Libvirt XML tuning via Virt-Manager, libvirt-stealth and qemu-anti-detection integration, plus a PowerShell script that simulates user activity (keyboard and mouse) to evade behavioural detection.',
-    },
-    stack: ['QEMU / KVM', 'Libvirt', 'PowerShell', 'Windows 10'],
-    links: [],
-    accent: 'linear-gradient(135deg,#65a30d,#22d3ee)',
-  },
 ]
 
 /* ── Skills ─────────────────────────────────────────────────── */
@@ -261,26 +311,17 @@ export interface SkillGroup {
 
 export const skillGroups: SkillGroup[] = [
   {
-    label: { es: 'Desarrollo', en: 'Development' },
-    items: [
-      'React',
-      'TypeScript',
-      'Node.js',
-      'REST APIs',
-      'Tailwind CSS',
-      'PostgreSQL',
-      'Git',
-    ],
-  },
-  {
     label: { es: 'DevSecOps & remediación', en: 'DevSecOps & remediation' },
     items: [
       'CI/CD · GitHub Actions',
+      'GitLab CI',
       'SAST / DAST',
       'Dependency scanning',
+      'Azure',
       'Docker',
       'TLS / SSL auditing',
       'Hardening',
+      'IA asistida (Claude, Codex)',
     ],
   },
   {
@@ -302,11 +343,27 @@ export const skillGroups: SkillGroup[] = [
       'Nessus',
       'OpenVAS',
       'OWASP Top 10',
+      'Linux',
+      'Bash',
       'Python',
       'PowerShell',
       'QEMU / KVM',
       'Libvirt',
       'Apache JMeter',
+    ],
+  },
+  {
+    label: { es: 'Desarrollo', en: 'Development' },
+    items: [
+      'React',
+      'TypeScript',
+      'Node.js',
+      'Fastify',
+      'Prisma',
+      'REST APIs',
+      'Tailwind CSS',
+      'PostgreSQL',
+      'Git',
     ],
   },
 ]
@@ -319,13 +376,6 @@ export interface FocusArea {
 }
 
 export const focusAreas: FocusArea[] = [
-  {
-    title: { es: 'Desarrollo full-stack', en: 'Full-stack development' },
-    body: {
-      es: 'Productos web de principio a fin: React y TypeScript en el front, APIs REST y base de datos en el back, con control de acceso por roles.',
-      en: 'Web products end to end: React and TypeScript on the front, REST APIs and a database on the back, with role-based access control.',
-    },
-  },
   {
     title: { es: 'DevSecOps & remediación', en: 'DevSecOps & remediation' },
     body: {
@@ -345,6 +395,13 @@ export const focusAreas: FocusArea[] = [
     body: {
       es: 'Pruebas de ingeniería social, físicas y de phishing, en organizaciones públicas, con formación posterior al personal.',
       en: 'Social-engineering tests, both physical and phishing-based, in public organisations, with follow-up staff training.',
+    },
+  },
+  {
+    title: { es: 'Desarrollo full-stack', en: 'Full-stack development' },
+    body: {
+      es: 'Productos web de principio a fin: React y TypeScript en el front, APIs REST y base de datos en el back, con control de acceso por roles.',
+      en: 'Web products end to end: React and TypeScript on the front, REST APIs and a database on the back, with role-based access control.',
     },
   },
 ]
@@ -385,17 +442,20 @@ export const gallery: GalleryShot[] = [
       en: 'Captive portal (victim view)',
     },
     caption: {
-      es: 'Página de login falsa servida por el evil portal en un laboratorio controlado: el objetivo cree estar iniciando sesión en Google.',
-      en: 'Fake login page served by the evil portal in a controlled lab — the target believes they’re signing in to Google.',
+      es: 'Laboratorio controlado y autorizado: página de login falsa servida por el evil portal — el objetivo cree estar iniciando sesión en Google.',
+      en: 'Controlled, authorized lab: fake login page served by the evil portal — the target believes they’re signing in to Google.',
     },
     project: 'wifi-marauder',
   },
   {
     file: 'wifi-marauder-captured-creds.png',
-    title: { es: 'Credenciales capturadas', en: 'Captured credentials' },
+    title: {
+      es: 'Credenciales capturadas (lab)',
+      en: 'Captured credentials (lab)',
+    },
     caption: {
-      es: 'Log del Flipper Zero con las credenciales enviadas por el cliente conectado al evil portal.',
-      en: 'Flipper Zero log showing the credentials submitted by the client connected to the evil portal.',
+      es: 'Mismo laboratorio controlado: log del Flipper Zero con las credenciales de prueba enviadas por el cliente conectado al evil portal.',
+      en: 'Same controlled lab: Flipper Zero log showing the test credentials submitted by the client connected to the evil portal.',
     },
     project: 'wifi-marauder',
   },
@@ -511,6 +571,7 @@ export const ui: Record<
     nav: {
       about: string
       experience: string
+      certifications: string
       work: string
       skills: string
       contact: string
@@ -521,6 +582,7 @@ export const ui: Record<
       lead: string
       ctaWork: string
       ctaContact: string
+      ctaCV: string
       scroll: string
     }
     about: {
@@ -530,6 +592,7 @@ export const ui: Record<
       stats: { value: string; label: string }[]
     }
     experience: { heading: string; lead: string }
+    certifications: { heading: string; lead: string }
     work: {
       heading: string
       lead: string
@@ -563,8 +626,7 @@ export const ui: Record<
     theme: { toLight: string; toDark: string }
     lang: { switchTo: string }
     profileCard: {
-      age: string
-      birthday: string
+      experience: string
       graduated: string
       education: string
       interests: string
@@ -576,6 +638,7 @@ export const ui: Record<
     nav: {
       about: 'Perfil',
       experience: 'Experiencia',
+      certifications: 'Certificaciones',
       work: 'Proyectos',
       skills: 'Skills',
       contact: 'Contacto',
@@ -586,13 +649,14 @@ export const ui: Record<
       lead: 'Desarrollo full-stack y seguridad ofensiva. Construyo productos web y los pipelines que los mantienen seguros — y hago Red Team cuando toca romperlos.',
       ctaWork: 'Ver proyectos',
       ctaContact: 'Hablemos',
+      ctaCV: 'Descargar CV',
       scroll: 'Desplázate',
     },
     about: {
       heading: 'Perfil',
       body: [
         'Soy Brayan Roa, desarrollador y ethical hacker con 3 años de experiencia. Actualmente curso la certificación CEH (EC-Council).',
-        'En desarrollo trabajo full-stack con React, TypeScript y APIs REST (Aukani POS, Resa-K). En seguridad me muevo con Nmap, Metasploit, Burp Suite, Nessus y OWASP ZAP: Red Team para sector público y financiero, análisis de vulnerabilidades, pipelines DevSecOps e ingeniería social.',
+        'En seguridad me muevo con Nmap, Metasploit, Burp Suite, Nessus y OWASP ZAP: pipelines DevSecOps, Red Team para sector público y financiero, análisis de vulnerabilidades e ingeniería social. En desarrollo trabajo full-stack con React, TypeScript y APIs REST (Aukani POS, Resa-K).',
       ],
       focusHeading: 'En qué me especializo',
       stats: [
@@ -605,9 +669,13 @@ export const ui: Record<
       heading: 'Experiencia',
       lead: 'Dónde aplico esto en el día a día, de forma profesional.',
     },
+    certifications: {
+      heading: 'Certificaciones',
+      lead: 'Formación formal que respalda el trabajo de arriba.',
+    },
     work: {
       heading: 'Proyectos',
-      lead: 'Una selección de desarrollo, DevSecOps, Red Team e investigación.',
+      lead: 'Una selección de DevSecOps, Red Team, investigación y desarrollo.',
       all: 'Todos',
       filters: {
         all: 'Todos',
@@ -639,9 +707,9 @@ export const ui: Record<
     },
     contact: {
       heading: 'Trabajemos juntos',
-      lead: '¿Un producto que construir, un pipeline que asegurar o un Red Team? Escríbeme.',
+      lead: '¿Un pipeline que asegurar, un Red Team o un producto que construir? Escríbeme.',
       cta: 'Enviar correo',
-      availability: 'Disponible para proyectos',
+      availability: 'Abierto a roles en ingeniería de seguridad',
     },
     footer: {
       built: 'Hecho con React, Tailwind y Motion',
@@ -650,8 +718,7 @@ export const ui: Record<
     theme: { toLight: 'Cambiar a tema claro', toDark: 'Cambiar a tema oscuro' },
     lang: { switchTo: 'Switch to English' },
     profileCard: {
-      age: 'años',
-      birthday: 'Nacimiento',
+      experience: 'Experiencia',
       graduated: 'Graduación',
       education: 'Educación',
       interests: 'Intereses',
@@ -662,6 +729,7 @@ export const ui: Record<
     nav: {
       about: 'About',
       experience: 'Experience',
+      certifications: 'Certifications',
       work: 'Work',
       skills: 'Skills',
       contact: 'Contact',
@@ -672,13 +740,14 @@ export const ui: Record<
       lead: 'Full-stack development and offensive security. I build web products and the pipelines that keep them secure — and I red-team them when it’s time to break them.',
       ctaWork: 'View work',
       ctaContact: "Let's talk",
+      ctaCV: 'Download CV',
       scroll: 'Scroll',
     },
     about: {
       heading: 'About',
       body: [
         "I'm Brayan Roa, a developer and ethical hacker with 3 years of experience. I'm currently pursuing the CEH certification (EC-Council).",
-        'On the build side I work full-stack with React, TypeScript and REST APIs (Aukani POS, Resa-K). On the security side I use Nmap, Metasploit, Burp Suite, Nessus and OWASP ZAP: Red Team for public-sector and financial institutions, vulnerability analysis, DevSecOps pipelines and social engineering.',
+        'On the security side I use Nmap, Metasploit, Burp Suite, Nessus and OWASP ZAP: DevSecOps pipelines, Red Team for public-sector and financial institutions, vulnerability analysis and social engineering. On the build side I work full-stack with React, TypeScript and REST APIs (Aukani POS, Resa-K).',
       ],
       focusHeading: 'What I focus on',
       stats: [
@@ -691,9 +760,13 @@ export const ui: Record<
       heading: 'Experience',
       lead: 'Where I put this to work, professionally, day to day.',
     },
+    certifications: {
+      heading: 'Certifications',
+      lead: 'Formal training backing up the work above.',
+    },
     work: {
       heading: 'Work',
-      lead: 'A selection of development, DevSecOps, Red Team and research projects.',
+      lead: 'A selection of DevSecOps, Red Team, research and development projects.',
       all: 'All',
       filters: {
         all: 'All',
@@ -725,9 +798,9 @@ export const ui: Record<
     },
     contact: {
       heading: "Let's work together",
-      lead: 'A product to build, a pipeline to secure or a red team? Drop me a line.',
+      lead: 'A pipeline to secure, a red team or a product to build? Drop me a line.',
       cta: 'Send email',
-      availability: 'Available for engagements',
+      availability: 'Open to security engineering roles',
     },
     footer: {
       built: 'Built with React, Tailwind and Motion',
@@ -736,8 +809,7 @@ export const ui: Record<
     theme: { toLight: 'Switch to light theme', toDark: 'Switch to dark theme' },
     lang: { switchTo: 'Cambiar a español' },
     profileCard: {
-      age: 'years old',
-      birthday: 'Born',
+      experience: 'Experience',
       graduated: 'Graduated',
       education: 'Education',
       interests: 'Interests',

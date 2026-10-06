@@ -11,6 +11,8 @@ interface MagneticButtonProps {
   href: string
   variant?: 'solid' | 'ghost'
   className?: string
+  /** fuerza la descarga en vez de navegar (p. ej. un PDF) */
+  download?: boolean
 }
 
 /**
@@ -21,6 +23,7 @@ export function MagneticButton({
   href,
   variant = 'solid',
   className = '',
+  download = false,
 }: MagneticButtonProps) {
   const ref = useRef<HTMLAnchorElement>(null)
   const reduce = useReducedMotion()
@@ -57,6 +60,7 @@ export function MagneticButton({
       href={href}
       target={external ? '_blank' : undefined}
       rel={external ? 'noreferrer noopener' : undefined}
+      download={download || undefined}
       onMouseMove={handleMove}
       onMouseLeave={reset}
       style={{ x: sx, y: sy }}

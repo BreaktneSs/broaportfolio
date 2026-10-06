@@ -1,20 +1,8 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useI18n } from '../providers/i18n'
 import { profile } from '../content'
 import { useScrollLock } from '../hooks/useScrollLock'
-
-/** Edad exacta a partir de una fecha de nacimiento ISO (YYYY-MM-DD). */
-function calculateAge(isoDate: string): number {
-  const birth = new Date(isoDate)
-  const now = new Date()
-  let age = now.getFullYear() - birth.getFullYear()
-  const birthdayPassed =
-    now.getMonth() > birth.getMonth() ||
-    (now.getMonth() === birth.getMonth() && now.getDate() >= birth.getDate())
-  if (!birthdayPassed) age--
-  return age
-}
 
 interface ProfileCardProps {
   open: boolean
@@ -22,7 +10,7 @@ interface ProfileCardProps {
 }
 
 export function ProfileCard({ open, onClose }: ProfileCardProps) {
-  const { t, pick, locale } = useI18n()
+  const { t, pick } = useI18n()
   useScrollLock(open)
 
   useEffect(() => {
@@ -31,16 +19,6 @@ export function ProfileCard({ open, onClose }: ProfileCardProps) {
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
   }, [open, onClose])
-
-  const age = useMemo(() => calculateAge(profile.birthDate), [])
-  const birthdayFormatted = useMemo(
-    () =>
-      new Date(`${profile.birthDate}T00:00:00`).toLocaleDateString(
-        locale === 'es' ? 'es-CO' : 'en-US',
-        { day: 'numeric', month: 'long', year: 'numeric' },
-      ),
-    [locale],
-  )
 
   return (
     <AnimatePresence>
@@ -100,10 +78,10 @@ export function ProfileCard({ open, onClose }: ProfileCardProps) {
             <div className="mt-6 grid grid-cols-2 gap-3">
               <div className="glass rounded-2xl p-4">
                 <div className="font-display text-2xl text-[rgb(var(--text-strong))]">
-                  {age}
+                  3+
                 </div>
                 <div className="mt-1 text-xs text-[rgb(var(--text-faint))]">
-                  {t.profileCard.age}
+                  {t.profileCard.experience}
                 </div>
               </div>
               <div className="glass rounded-2xl p-4">
@@ -115,9 +93,6 @@ export function ProfileCard({ open, onClose }: ProfileCardProps) {
                 </div>
               </div>
             </div>
-            <p className="mt-2 font-mono text-[11px] text-[rgb(var(--text-faint))]">
-              {t.profileCard.birthday}: {birthdayFormatted}
-            </p>
 
             <div className="mt-6">
               <h4 className="font-mono text-xs tracking-widest text-[rgb(var(--glow-a))] uppercase">
@@ -149,18 +124,23 @@ export function ProfileCard({ open, onClose }: ProfileCardProps) {
               </ul>
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-4 border-t border-[rgb(var(--hairline)/0.14)] pt-5">
-              {profile.socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target={s.href.startsWith('http') ? '_blank' : undefined}
-                  rel="noreferrer noopener"
-                  className="text-sm font-medium text-[rgb(var(--text-strong))] hover:text-[rgb(var(--glow-a))]"
-                >
-                  {s.label}
-                </a>
-              ))}
+            <div className="mt-6 border-t border-[rgb(var(--hairline)/0.14)] pt-5">
+              <h4 className="font-mono text-xs tracking-widest text-[rgb(var(--glow-a))] uppercase">
+                {t.profileCard.contact}
+              </h4>
+              <div className="mt-2 flex flex-wrap gap-4">
+                {profile.socials.map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target={s.href.startsWith('http') ? '_blank' : undefined}
+                    rel="noreferrer noopener"
+                    className="text-sm font-medium text-[rgb(var(--text-strong))] hover:text-[rgb(var(--glow-a))]"
+                  >
+                    {s.label}
+                  </a>
+                ))}
+              </div>
             </div>
           </motion.div>
         </motion.div>

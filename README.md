@@ -3,7 +3,7 @@
 Portfolio personal de **Brayan Roa** — ethical hacker y desarrollador full-stack
 (desarrollo web, DevSecOps, Red Team, ingeniería social).
 
-🔗 **https://breaktnes.github.io/broaportfolio/**
+🔗 **https://breaktness.github.io/broaportfolio/**
 
 ## Stack
 
