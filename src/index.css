@@ -212,31 +212,29 @@
     }
   }
 
-  /* Panel de código: scroll propio y acotado, con barras siempre visibles
-     (no basta con el estilo global — aquí el usuario necesita ver de
-     entrada que hay más código a los lados y abajo). */
+  /* Panel de código: solo scroll vertical (el texto envuelve en vez de
+     desbordar a los lados) con una barra "liquid glass" — translúcida,
+     acorde al resto del sitio — en vez de un color sólido. */
   .code-scroll {
     scrollbar-width: thin;
-    scrollbar-color: rgb(var(--glow-a) / 0.55) transparent;
+    scrollbar-color: rgb(var(--text-strong) / 0.22) transparent;
   }
   .code-scroll::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 10px;
   }
   .code-scroll::-webkit-scrollbar-track {
-    background: rgb(var(--hairline) / 0.06);
-    border-radius: 999px;
+    background: transparent;
   }
   .code-scroll::-webkit-scrollbar-thumb {
-    background: rgb(var(--glow-a) / 0.55);
+    background: rgb(var(--text-strong) / 0.14);
+    background-clip: padding-box;
+    border: 2px solid transparent;
     border-radius: 999px;
-    border: none;
+    box-shadow: inset 0 0 0 1px rgb(var(--text-strong) / 0.1);
   }
   .code-scroll::-webkit-scrollbar-thumb:hover {
-    background: rgb(var(--glow-a) / 0.8);
-  }
-  .code-scroll::-webkit-scrollbar-corner {
-    background: transparent;
+    background: rgb(var(--text-strong) / 0.24);
+    background-clip: padding-box;
   }
 
   /* Resaltado de código (Prism), paleta propia en vez del tema por defecto */
@@ -244,7 +242,8 @@
     font-family: var(--font-mono);
     font-size: 0.8rem;
     line-height: 1.6;
-    white-space: pre;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
     color: rgb(var(--text-body));
   }
   .code-block .token.comment {

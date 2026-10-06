@@ -11,7 +11,7 @@ const EDGE = 2
 
 export function CodeBlock({ code, language = 'python' }: CodeBlockProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const [more, setMore] = useState({ down: false, right: false })
+  const [hasMore, setHasMore] = useState(false)
 
   const html = useMemo(() => {
     const grammar = Prism.languages[language]
@@ -23,13 +23,10 @@ export function CodeBlock({ code, language = 'python' }: CodeBlockProps) {
     if (!el) return
 
     const update = () => {
-      setMore({
-        down: el.scrollTop + el.clientHeight < el.scrollHeight - EDGE,
-        right: el.scrollLeft + el.clientWidth < el.scrollWidth - EDGE,
-      })
+      setHasMore(el.scrollTop + el.clientHeight < el.scrollHeight - EDGE)
     }
 
-    // tras el paint del highlight, para medir scrollWidth/Height reales
+    // tras el paint del highlight, para medir scrollHeight real
     const raf = requestAnimationFrame(update)
     el.addEventListener('scroll', update, { passive: true })
     const ro = new ResizeObserver(update)
@@ -46,7 +43,7 @@ export function CodeBlock({ code, language = 'python' }: CodeBlockProps) {
     <div className="relative">
       <div
         ref={ref}
-        className="code-scroll max-h-[48vh] overflow-auto rounded-xl border border-[rgb(var(--hairline)/0.14)] bg-[rgb(var(--glow-a)/0.03)] p-4"
+        className="code-scroll max-h-[48vh] overflow-x-hidden overflow-y-auto rounded-xl border border-[rgb(var(--hairline)/0.14)] bg-[rgb(var(--glow-a)/0.03)] p-4"
       >
         <pre className="code-block">
           {/* html generado por Prism a partir de contenido propio en content.ts, no de usuarios */}
@@ -57,35 +54,19 @@ export function CodeBlock({ code, language = 'python' }: CodeBlockProps) {
         </pre>
       </div>
 
-      {more.down && (
-        <span className="pointer-events-none absolute right-10 bottom-2 grid size-6 place-items-center rounded-full bg-[rgb(var(--glow-a))] text-black shadow-lg">
+      {hasMore && (
+        <span className="glass pointer-events-none absolute right-3 bottom-3 grid size-7 place-items-center rounded-full text-[rgb(var(--glow-a))] shadow-lg">
           <svg
-            width="12"
-            height="12"
+            width="13"
+            height="13"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="3"
+            strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
           >
             <path d="M6 9l6 6 6-6" />
-          </svg>
-        </span>
-      )}
-      {more.right && (
-        <span className="pointer-events-none absolute top-2 right-2 grid size-6 place-items-center rounded-full bg-[rgb(var(--glow-a))] text-black shadow-lg">
-          <svg
-            width="12"
-            height="12"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M9 6l6 6-6 6" />
           </svg>
         </span>
       )}
