@@ -142,6 +142,14 @@ export const certifications: Certification[] = [
       en: 'Certified Ethical Hacker · in progress',
     },
   },
+  {
+    name: 'AWS CCP',
+    issuer: 'Amazon Web Services',
+    note: {
+      es: 'AWS Certified Cloud Practitioner · en curso',
+      en: 'AWS Certified Cloud Practitioner · in progress',
+    },
+  },
 ]
 
 /* ── Proyectos destacados ───────────────────────────────────── */
